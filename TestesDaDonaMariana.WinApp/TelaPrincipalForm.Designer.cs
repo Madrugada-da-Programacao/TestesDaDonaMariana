@@ -1,4 +1,4 @@
-﻿namespace TestesDaDonaMariana.WinApp
+namespace TestesDaDonaMariana.WinApp
 {
 	partial class TelaPrincipalForm
 	{
@@ -69,28 +69,28 @@
 			// clientesMenuItem
 			// 
 			clientesMenuItem.Name = "clientesMenuItem";
-			clientesMenuItem.Size = new Size(180, 22);
+			clientesMenuItem.Size = new Size(125, 22);
 			clientesMenuItem.Text = "Disciplina";
 			clientesMenuItem.Click += clientesMenuItem_Click;
 			// 
 			// materiaToolStripMenuItem
 			// 
 			materiaToolStripMenuItem.Name = "materiaToolStripMenuItem";
-			materiaToolStripMenuItem.Size = new Size(180, 22);
+			materiaToolStripMenuItem.Size = new Size(125, 22);
 			materiaToolStripMenuItem.Text = "Materia";
 			materiaToolStripMenuItem.Click += materiaToolStripMenuItem_Click;
 			// 
 			// questãoToolStripMenuItem
 			// 
 			questãoToolStripMenuItem.Name = "questãoToolStripMenuItem";
-			questãoToolStripMenuItem.Size = new Size(180, 22);
+			questãoToolStripMenuItem.Size = new Size(125, 22);
 			questãoToolStripMenuItem.Text = "Questão";
 			questãoToolStripMenuItem.Click += questãoToolStripMenuItem_Click;
 			// 
 			// testeToolStripMenuItem
 			// 
 			testeToolStripMenuItem.Name = "testeToolStripMenuItem";
-			testeToolStripMenuItem.Size = new Size(180, 22);
+			testeToolStripMenuItem.Size = new Size(125, 22);
 			testeToolStripMenuItem.Text = "Teste";
 			testeToolStripMenuItem.Click += testeToolStripMenuItem_Click;
 			// 
@@ -112,7 +112,6 @@
 			// 
 			// barraFerramentas
 			// 
-			barraFerramentas.Enabled = false;
 			barraFerramentas.ImageScalingSize = new Size(20, 20);
 			barraFerramentas.Items.AddRange(new ToolStripItem[] { btnInserir, btnEditar, btnExcluir, toolStripSeparator2, labelTipoCadastro });
 			barraFerramentas.Location = new Point(0, 24);
@@ -124,6 +123,7 @@
 			// btnInserir
 			// 
 			btnInserir.DisplayStyle = ToolStripItemDisplayStyle.Image;
+			btnInserir.Enabled = false;
 			btnInserir.Image = Properties.Resources.add_circle_FILL0_wght400_GRAD0_opsz24;
 			btnInserir.ImageScaling = ToolStripItemImageScaling.None;
 			btnInserir.ImageTransparentColor = Color.Magenta;
@@ -134,6 +134,7 @@
 			// btnEditar
 			// 
 			btnEditar.DisplayStyle = ToolStripItemDisplayStyle.Image;
+			btnEditar.Enabled = false;
 			btnEditar.Image = Properties.Resources.edit_FILL0_wght400_GRAD0_opsz24;
 			btnEditar.ImageScaling = ToolStripItemImageScaling.None;
 			btnEditar.ImageTransparentColor = Color.Magenta;
@@ -144,6 +145,7 @@
 			// btnExcluir
 			// 
 			btnExcluir.DisplayStyle = ToolStripItemDisplayStyle.Image;
+			btnExcluir.Enabled = false;
 			btnExcluir.Image = Properties.Resources.delete_FILL0_wght400_GRAD0_opsz24;
 			btnExcluir.ImageScaling = ToolStripItemImageScaling.None;
 			btnExcluir.ImageTransparentColor = Color.Magenta;

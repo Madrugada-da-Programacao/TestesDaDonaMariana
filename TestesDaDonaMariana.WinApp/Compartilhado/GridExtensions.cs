@@ -1,4 +1,4 @@
-﻿namespace TestesDaDonaMariana.Compartilhado
+﻿namespace TestesDaDonaMariana.WinApp.Compartilhado
 {
 	public static class GridExtensions
     {
