@@ -130,6 +130,7 @@ namespace TestesDaDonaMariana.WinApp
 			btnInserir.Name = "btnInserir";
 			btnInserir.Padding = new Padding(7);
 			btnInserir.Size = new Size(42, 42);
+			btnInserir.Click += btnInserir_Click;
 			// 
 			// btnEditar
 			// 
@@ -141,6 +142,7 @@ namespace TestesDaDonaMariana.WinApp
 			btnEditar.Name = "btnEditar";
 			btnEditar.Padding = new Padding(7);
 			btnEditar.Size = new Size(42, 42);
+			btnEditar.Click += btnEditar_Click;
 			// 
 			// btnExcluir
 			// 
@@ -152,6 +154,7 @@ namespace TestesDaDonaMariana.WinApp
 			btnExcluir.Name = "btnExcluir";
 			btnExcluir.Padding = new Padding(7);
 			btnExcluir.Size = new Size(42, 42);
+			btnExcluir.Click += btnExcluir_Click;
 			// 
 			// toolStripSeparator2
 			// 
