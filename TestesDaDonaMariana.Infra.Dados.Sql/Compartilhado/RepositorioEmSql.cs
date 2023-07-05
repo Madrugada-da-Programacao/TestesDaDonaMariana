@@ -1,7 +1,7 @@
 ﻿using Microsoft.Data.SqlClient;
 using TestesDaDonaMariana.Dominio.Compartilhado;
 
-namespace FestasInfantis.Infra.Dados.Sql.Compartilhado
+namespace TestesDaDonaMariana.Infra.Dados.Sql.Compartilhado
 {
 	public abstract class RepositorioEmSql<TEntidade, TMapeador> 
         where TEntidade : Entidade<TEntidade>
@@ -40,7 +40,7 @@ namespace FestasInfantis.Infra.Dados.Sql.Compartilhado
             conexaoComBanco.Close();
         }
 
-        public virtual void Editar(int id, TEntidade registro)
+        public virtual void Editar(TEntidade registro)
         {
             //obter a conexão com o banco e abrir ela
             SqlConnection conexaoComBanco = new SqlConnection(enderecoBanco);
@@ -81,7 +81,7 @@ namespace FestasInfantis.Infra.Dados.Sql.Compartilhado
             conexaoComBanco.Close();
         }
 
-        public virtual TEntidade SelecionarPorId(int id)
+        public virtual TEntidade SelecionarPeloId(int id)
         {
             //obter a conexão com o banco e abrir ela
             SqlConnection conexaoComBanco = new SqlConnection(enderecoBanco);

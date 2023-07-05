@@ -1,6 +1,6 @@
 ﻿using Microsoft.Data.SqlClient;
 
-namespace FestasInfantis.Infra.Dados.Sql.Compartilhado
+namespace TestesDaDonaMariana.Infra.Dados.Sql.Compartilhado
 {
 	public abstract class MapeadorBase<TEntidade>
     {
