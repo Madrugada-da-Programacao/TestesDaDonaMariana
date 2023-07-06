@@ -18,17 +18,13 @@ namespace TestesDaDonaMariana.WinApp.ModuloDisciplina
 
         public override void Inserir()
         {
-            List<string> nomes = new List<string>();
-            foreach (Disciplina d in repositorioDisciplina.SelecionarTodos())
-            {
-                nomes.Add(d.Nome);
-            }
+            List<string> nomes = ObterNomes();
 
             DialogDisciplina tela = new DialogDisciplina(nomes);
 
             DialogResult resultado = tela.ShowDialog();
 
-            if(resultado == DialogResult.OK)
+            if (resultado == DialogResult.OK)
             {
                 repositorioDisciplina.Inserir(tela.Disciplina);
 
@@ -38,7 +34,32 @@ namespace TestesDaDonaMariana.WinApp.ModuloDisciplina
 
         public override void Editar()
         {
-            throw new NotImplementedException();
+            Disciplina? entidade = TabelaDisciplina.ObterEntidadeSelecionada();
+
+            if (entidade == null)
+            {
+                MessageBox.Show($"Selecione um {TipoDoCadastro} primeiro!",
+                                $"Edição de {TipoDoCadastro}s",
+                                MessageBoxButtons.OK,
+                                MessageBoxIcon.Exclamation);
+
+                return;
+            }
+
+            List<string> nomes = ObterNomes();
+
+            DialogDisciplina dialog = new DialogDisciplina(nomes);
+            dialog.Disciplina = entidade;
+
+
+            DialogResult resultado = dialog.ShowDialog();
+
+            if (resultado == DialogResult.OK)
+            {
+                repositorioDisciplina.Editar(dialog.Disciplina);
+
+                CarregarEntidades();
+            }
         }
 
         public override void Excluir()
@@ -60,6 +81,17 @@ namespace TestesDaDonaMariana.WinApp.ModuloDisciplina
             List<Disciplina> disciplinas = repositorioDisciplina.SelecionarTodos();
 
             TabelaDisciplina.AtualizarRegistros(disciplinas);
+        }
+
+        private List<string> ObterNomes()
+        {
+            List<string> nomes = new List<string>();
+            foreach (Disciplina d in repositorioDisciplina.SelecionarTodos())
+            {
+                nomes.Add(d.Nome);
+            }
+
+            return nomes;
         }
     }
 }

@@ -9,7 +9,14 @@ namespace TestesDaDonaMariana.WinApp.ModuloDisciplina
 
         private Disciplina disciplina;
 
-        public Disciplina Disciplina { get { return disciplina; } set { } }
+        public Disciplina Disciplina { get { return disciplina; } 
+            set 
+            {
+                disciplina = value;
+                labelId.Text = value.Id.ToString();
+                txtNome.Text = value.Nome.ToString();
+            }
+        }
         public DialogDisciplina(List<string> nomes)
         {
             InitializeComponent();
@@ -34,6 +41,10 @@ namespace TestesDaDonaMariana.WinApp.ModuloDisciplina
             }
             else 
             {
+                if (labelId.Text != "0")
+                {
+                    disciplina.Id = Convert.ToInt32(labelId.Text);
+                }
                 TelaPrincipalForm.Instancia.AtualizarToolStrip("");
             }
         }
