@@ -1,4 +1,4 @@
-namespace TestesDaDonaMariana.WinApp
+﻿namespace TestesDaDonaMariana.WinApp
 {
 	partial class TelaPrincipalForm
 	{

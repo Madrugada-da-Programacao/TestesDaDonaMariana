@@ -1,4 +1,6 @@
-using TestesDaDonaMariana.WinApp.Compartilhado;
+using TestesDaDonaMariana.Dominio.ModuloQuestao;
+using TestesDaDonaMariana.Infra.Dados.Sql.ModuloQuestao;
+using TestesDaDonaMariana.WinApp.ModuloQuestao;
 
 namespace TestesDaDonaMariana.WinApp
 {
@@ -10,7 +12,7 @@ namespace TestesDaDonaMariana.WinApp
 
 		//private IRepositorioDisciplina RepositorioDisciplina { get; set; }
 		//private IRepositorioMateria RepositorioMateria { get; set; }
-		//private IRepositorioQuestao RepositorioQuestao { get; set; }
+		private IRepositorioQuestao RepositorioQuestao { get; set; } = new RepositorioQuestaoEmSql();
 		//private IRepositorioTeste RepositorioTeste { get; set; }
 
 
@@ -49,7 +51,7 @@ namespace TestesDaDonaMariana.WinApp
 
 		private void questãoToolStripMenuItem_Click(object sender, EventArgs e)
 		{
-			//Controlador = new ControladorConcertar(RepositorioConcertar);
+			Controlador = new ControladorQuestao(RepositorioQuestao);
 
 			ConfigurarTelaPrincipal(Controlador);
 		}
