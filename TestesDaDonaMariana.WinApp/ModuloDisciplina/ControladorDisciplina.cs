@@ -47,6 +47,7 @@ namespace TestesDaDonaMariana.WinApp.ModuloDisciplina
             }
 
             List<string> nomes = ObterNomes();
+            nomes.Remove(entidade.Nome);
 
             DialogDisciplina dialog = new DialogDisciplina(nomes);
             dialog.Disciplina = entidade;
