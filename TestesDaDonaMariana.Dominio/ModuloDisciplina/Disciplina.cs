@@ -19,5 +19,18 @@ namespace TestesDaDonaMariana.Dominio.ModuloDisciplina
 
             return erros;
         }
+
+        public List<string> Validar(List<string> nomes)
+        {
+            List<string> erros = Validar();
+
+            foreach (string n in nomes)
+            {
+                if (Nome == n)
+                    erros.Add("Esse nome já existe");
+            }
+
+            return erros;
+        }
     }
 }

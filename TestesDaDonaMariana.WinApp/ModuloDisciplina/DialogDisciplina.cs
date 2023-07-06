@@ -5,14 +5,18 @@ namespace TestesDaDonaMariana.WinApp.ModuloDisciplina
 {
     public partial class DialogDisciplina : Form
     {
+        private List<string> Nomes { get; set; }
+
         private Disciplina disciplina;
 
         public Disciplina Disciplina { get { return disciplina; } set { } }
-        public DialogDisciplina()
+        public DialogDisciplina(List<string> nomes)
         {
             InitializeComponent();
 
             this.ConfigurarDialog();
+
+            this.Nomes = nomes;
         }
 
         private void btnGravar_Click(object sender, EventArgs e)
@@ -21,7 +25,7 @@ namespace TestesDaDonaMariana.WinApp.ModuloDisciplina
 
             disciplina = new Disciplina(nome);
 
-            List<string> erros = disciplina.Validar();
+            List<string> erros = disciplina.Validar(Nomes);
 
             if(erros.Count > 0)
             {
@@ -30,7 +34,7 @@ namespace TestesDaDonaMariana.WinApp.ModuloDisciplina
             }
             else 
             {
-
+                TelaPrincipalForm.Instancia.AtualizarToolStrip("");
             }
         }
 

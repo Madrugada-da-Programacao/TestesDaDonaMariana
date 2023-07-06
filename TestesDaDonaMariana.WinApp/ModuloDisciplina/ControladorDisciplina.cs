@@ -18,7 +18,13 @@ namespace TestesDaDonaMariana.WinApp.ModuloDisciplina
 
         public override void Inserir()
         {
-            DialogDisciplina tela = new DialogDisciplina();
+            List<string> nomes = new List<string>();
+            foreach (Disciplina d in repositorioDisciplina.SelecionarTodos())
+            {
+                nomes.Add(d.Nome);
+            }
+
+            DialogDisciplina tela = new DialogDisciplina(nomes);
 
             DialogResult resultado = tela.ShowDialog();
 

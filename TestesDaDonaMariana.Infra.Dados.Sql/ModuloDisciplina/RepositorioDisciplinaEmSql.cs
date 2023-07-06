@@ -1,4 +1,4 @@
-﻿using FestasInfantis.Infra.Dados.Sql.Compartilhado;
+﻿using TestesDaDonaMariana.Infra.Dados.Sql.Compartilhado;
 using Microsoft.Data.SqlClient;
 using TestesDaDonaMariana.Dominio.ModuloDisciplina;
 
@@ -9,11 +9,11 @@ namespace TestesDaDonaMariana.Infra.Dados.Sql.ModuloDisciplina
         protected override string sqlInserir =>
             @"INSERT INTO [TBDISCIPLINA] 
 	            (
-		            [NOME], 
+		            [NOME] 
 	            )
 	            VALUES 
 	            (
-		            @NOME, 
+		            @NOME
 	            );                 
 
             SELECT SCOPE_IDENTITY();";
@@ -21,7 +21,7 @@ namespace TestesDaDonaMariana.Infra.Dados.Sql.ModuloDisciplina
         protected override string sqlEditar =>
             @"UPDATE [TBDISCIPLINA] 
 	            SET 
-		            [NOME] = @NOME,
+		            [NOME] = @NOME
 	            WHERE 
 		            [ID] = @ID";
 
@@ -50,7 +50,7 @@ namespace TestesDaDonaMariana.Infra.Dados.Sql.ModuloDisciplina
 
         public Disciplina? SelecionarPeloId(int id)
         {
-            Disciplina disciplina = base.SelecionarPorId(id);
+            Disciplina disciplina = base.SelecionarPeloId(id);
 
             return disciplina;
         }

@@ -1,5 +1,5 @@
 ﻿using TestesDaDonaMariana.Dominio.ModuloDisciplina;
-using FestasInfantis.Infra.Dados.Sql.Compartilhado;
+using TestesDaDonaMariana.Infra.Dados.Sql.Compartilhado;
 using Microsoft.Data.SqlClient;
 
 namespace TestesDaDonaMariana.Infra.Dados.Sql.ModuloDisciplina

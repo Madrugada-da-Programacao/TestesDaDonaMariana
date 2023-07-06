@@ -1,5 +1,4 @@
 ﻿using System.ComponentModel;
-using TestesDaDonaMariana.Compartilhado;
 using TestesDaDonaMariana.Dominio.ModuloDisciplina;
 
 namespace TestesDaDonaMariana.WinApp.ModuloDisciplina
