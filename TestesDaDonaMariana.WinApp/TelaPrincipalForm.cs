@@ -1,4 +1,7 @@
 using TestesDaDonaMariana.WinApp.Compartilhado;
+using TestesDaDonaMariana.Dominio.ModuloMateria;
+using TestesDaDonaMariana.WinApp.ModuloMateria;
+using TestesDaDonaMariana.Infra.Dados.Sql.ModuloMateria;
 
 namespace TestesDaDonaMariana.WinApp
 {
@@ -8,14 +11,14 @@ namespace TestesDaDonaMariana.WinApp
 
 		private Controlador Controlador { get; set; }
 
-		//private IRepositorioDisciplina RepositorioDisciplina { get; set; }
-		//private IRepositorioMateria RepositorioMateria { get; set; }
-		//private IRepositorioQuestao RepositorioQuestao { get; set; }
-		//private IRepositorioTeste RepositorioTeste { get; set; }
+        //private IRepositorioDisciplina RepositorioDisciplina { get; set; }
+        private IRepositorioMateria RepositorioMateria { get; set; } = new RepositorioMateriaEmSql();
+        //private IRepositorioQuestao RepositorioQuestao { get; set; }
+        //private IRepositorioTeste RepositorioTeste { get; set; }
 
 
 
-		public TelaPrincipalForm()
+        public TelaPrincipalForm()
 		{
 			InitializeComponent();
 			Instancia = this;
@@ -42,7 +45,7 @@ namespace TestesDaDonaMariana.WinApp
 
 		private void materiaToolStripMenuItem_Click(object sender, EventArgs e)
 		{
-			//Controlador = new ControladorConcertar(RepositorioConcertar);
+			Controlador = new ControladorMateria(RepositorioMateria);
 
 			ConfigurarTelaPrincipal(Controlador);
 		}
