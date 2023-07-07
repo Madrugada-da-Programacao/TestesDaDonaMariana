@@ -5,6 +5,8 @@ namespace TestesDaDonaMariana.Dominio.ModuloDisciplina
     public class Disciplina : Entidade<Disciplina>
     {
         public string Nome { get; set; }
+
+        public string Materias { get; set; }
         public Disciplina(string nome)
         {
             Nome = nome;

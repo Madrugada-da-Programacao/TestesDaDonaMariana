@@ -38,7 +38,7 @@ namespace TestesDaDonaMariana.WinApp.ModuloDisciplina
 
             if (entidade == null)
             {
-                MessageBox.Show($"Selecione um {TipoDoCadastro} primeiro!",
+                MessageBox.Show($"Selecione uma {TipoDoCadastro} primeiro!",
                                 $"Edição de {TipoDoCadastro}s",
                                 MessageBoxButtons.OK,
                                 MessageBoxIcon.Exclamation);
@@ -64,8 +64,45 @@ namespace TestesDaDonaMariana.WinApp.ModuloDisciplina
         }
 
         public override void Excluir()
-        {
-            throw new NotImplementedException();
+        {   
+            Disciplina? entidade = TabelaDisciplina.ObterEntidadeSelecionada();
+
+            if (entidade == null)
+            {
+                MessageBox.Show($"Selecione um {TipoDoCadastro} primeiro!",
+                                $"Exclusão de {TipoDoCadastro}s",
+                                MessageBoxButtons.OK,
+                                MessageBoxIcon.Exclamation);
+
+                return;
+            }
+
+            /*
+            bool podeExcluir =
+            repositorioMateria.VerificarMateriasAbertasDisciplina(entidade); 
+
+            if (!podeExcluir) 
+            {
+                MessageBox.Show($"Não é possível excluir uma {TipoDoCadastro} com matérias em aberto.",
+                    $"Exclusão de {TipoDoCadastro}s",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Exclamation);
+
+                return;
+            }
+            TODO*/
+
+            DialogResult opcao = MessageBox.Show($"Deseja excluir a {TipoDoCadastro} {entidade.Nome}?",
+                                                          $"Exclusão de {TipoDoCadastro}s",
+                                                          MessageBoxButtons.OKCancel,
+                                                          MessageBoxIcon.Question);
+
+            if (opcao == DialogResult.OK)
+            {
+                repositorioDisciplina.Excluir(entidade);
+
+                CarregarEntidades();
+            }
         }
 
         public override UserControl ObterListagem()
