@@ -77,7 +77,7 @@ namespace TestesDaDonaMariana.WinApp.ModuloDisciplina
                 return;
             }
 
-            /*
+			/*
             bool podeExcluir =
             repositorioMateria.VerificarMateriasAbertasDisciplina(entidade); 
 
@@ -92,7 +92,22 @@ namespace TestesDaDonaMariana.WinApp.ModuloDisciplina
             }
             TODO*/
 
-            DialogResult opcao = MessageBox.Show($"Deseja excluir a {TipoDoCadastro} {entidade.Nome}?",
+			/*
+            bool podeExcluir =
+            repositorioMateria.VerificarTestesAbertosDisciplina(entidade); 
+
+            if (!podeExcluir) 
+            {
+                MessageBox.Show($"Não é possível excluir uma {TipoDoCadastro} com matérias em aberto.",
+                    $"Exclusão de {TipoDoCadastro}s",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Exclamation);
+
+                return;
+            }
+            TODO*/
+
+			DialogResult opcao = MessageBox.Show($"Deseja excluir a {TipoDoCadastro} {entidade.Nome}?",
                                                           $"Exclusão de {TipoDoCadastro}s",
                                                           MessageBoxButtons.OKCancel,
                                                           MessageBoxIcon.Question);
