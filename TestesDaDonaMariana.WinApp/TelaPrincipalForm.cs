@@ -4,6 +4,9 @@ using TestesDaDonaMariana.Infra.Dados.Sql.ModuloDisciplina;
 using TestesDaDonaMariana.Dominio.ModuloMateria;
 using TestesDaDonaMariana.WinApp.ModuloMateria;
 using TestesDaDonaMariana.Infra.Dados.Sql.ModuloMateria;
+using TestesDaDonaMariana.Dominio.ModuloQuestao;
+using TestesDaDonaMariana.Infra.Dados.Sql.ModuloQuestao;
+using TestesDaDonaMariana.WinApp.ModuloQuestao;
 
 namespace TestesDaDonaMariana.WinApp
 {
@@ -15,7 +18,7 @@ namespace TestesDaDonaMariana.WinApp
 
         private IRepositorioDisciplina RepositorioDisciplina = new RepositorioDisciplinaEmSql();
         private IRepositorioMateria RepositorioMateria { get; set; } = new RepositorioMateriaEmSql();
-        //private IRepositorioQuestao RepositorioQuestao { get; set; }
+		private IRepositorioQuestao RepositorioQuestao { get; set; } = new RepositorioQuestaoEmSql();
         //private IRepositorioTeste RepositorioTeste { get; set; }
 
 
@@ -54,9 +57,9 @@ namespace TestesDaDonaMariana.WinApp
 
         private void questaoToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            //Controlador = new ControladorConcertar(RepositorioConcertar);
+			Controlador = new ControladorQuestao(RepositorioMateria, RepositorioQuestao);
 
-            ConfigurarTelaPrincipal(Controlador);
+			ConfigurarTelaPrincipal(Controlador);
         }
 
         private void testeToolStripMenuItem_Click(object sender, EventArgs e)

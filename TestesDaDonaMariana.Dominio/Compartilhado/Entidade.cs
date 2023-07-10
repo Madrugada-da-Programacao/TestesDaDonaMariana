@@ -1,14 +1,14 @@
 ﻿namespace TestesDaDonaMariana.Dominio.Compartilhado
 {
-    public abstract class Entidade<TipoEntidade>
-        where TipoEntidade : Entidade<TipoEntidade>
+    public abstract class Entidade<TEntidade>
+        where TEntidade : Entidade<TEntidade>
     {
         public int Id { get; set; }
 
-        public void Editar(TipoEntidade entidadeAtualizado)
+        public void Editar(TEntidade entidadeAtualizado)
         {
             // Pega o tipo e para cada propriedade, que não seja o id, atualiza o valor
-            typeof(TipoEntidade).GetProperties().ToList().ForEach(p =>
+            typeof(TEntidade).GetProperties().ToList().ForEach(p =>
             {
                 if (!p.Name.Equals("Id"))
                     p.SetValue(this, p.GetValue(entidadeAtualizado));
