@@ -33,11 +33,12 @@
             lbNome = new Label();
             txNome = new TextBox();
             lbSerie = new Label();
-            txSerie = new TextBox();
             lbDisc = new Label();
             cmbDisciplina = new ComboBox();
             btnGravar = new Button();
             btnCancelar = new Button();
+            nudSerie = new NumericUpDown();
+            ((System.ComponentModel.ISupportInitialize)nudSerie).BeginInit();
             SuspendLayout();
             // 
             // label1
@@ -78,24 +79,16 @@
             // lbSerie
             // 
             lbSerie.AutoSize = true;
-            lbSerie.Location = new Point(39, 173);
+            lbSerie.Location = new Point(39, 217);
             lbSerie.Name = "lbSerie";
             lbSerie.Size = new Size(45, 20);
             lbSerie.TabIndex = 6;
             lbSerie.Text = "Série:";
             // 
-            // txSerie
-            // 
-            txSerie.Location = new Point(98, 170);
-            txSerie.Margin = new Padding(3, 4, 3, 4);
-            txSerie.Name = "txSerie";
-            txSerie.Size = new Size(65, 27);
-            txSerie.TabIndex = 7;
-            // 
             // lbDisc
             // 
             lbDisc.AutoSize = true;
-            lbDisc.Location = new Point(39, 231);
+            lbDisc.Location = new Point(39, 153);
             lbDisc.Name = "lbDisc";
             lbDisc.Size = new Size(77, 20);
             lbDisc.TabIndex = 14;
@@ -105,7 +98,7 @@
             // 
             cmbDisciplina.DropDownStyle = ComboBoxStyle.DropDownList;
             cmbDisciplina.FormattingEnabled = true;
-            cmbDisciplina.Location = new Point(121, 231);
+            cmbDisciplina.Location = new Point(121, 153);
             cmbDisciplina.Margin = new Padding(3, 4, 3, 4);
             cmbDisciplina.Name = "cmbDisciplina";
             cmbDisciplina.Size = new Size(155, 28);
@@ -134,16 +127,26 @@
             btnCancelar.Text = "Cancelar";
             btnCancelar.UseVisualStyleBackColor = true;
             // 
+            // nudSerie
+            // 
+            nudSerie.Location = new Point(110, 216);
+            nudSerie.Maximum = new decimal(new int[] { 9, 0, 0, 0 });
+            nudSerie.Minimum = new decimal(new int[] { 1, 0, 0, 0 });
+            nudSerie.Name = "nudSerie";
+            nudSerie.Size = new Size(150, 27);
+            nudSerie.TabIndex = 18;
+            nudSerie.Value = new decimal(new int[] { 1, 0, 0, 0 });
+            // 
             // DialogMateria
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(324, 428);
+            ClientSize = new Size(442, 480);
+            Controls.Add(nudSerie);
             Controls.Add(btnCancelar);
             Controls.Add(btnGravar);
             Controls.Add(cmbDisciplina);
             Controls.Add(lbDisc);
-            Controls.Add(txSerie);
             Controls.Add(lbSerie);
             Controls.Add(txNome);
             Controls.Add(lbNome);
@@ -153,6 +156,7 @@
             Name = "DialogMateria";
             ShowIcon = false;
             Text = "DialogMatéria";
+            ((System.ComponentModel.ISupportInitialize)nudSerie).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -164,10 +168,10 @@
         private Label lbNome;
         private TextBox txNome;
         private Label lbSerie;
-        private TextBox txSerie;
         private Label lbDisc;
         private ComboBox cmbDisciplina;
         private Button btnGravar;
         private Button btnCancelar;
+        private NumericUpDown nudSerie;
     }
 }

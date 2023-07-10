@@ -3,20 +3,20 @@ using TestesDaDonaMariana.Dominio.ModuloMateria;
 
 namespace TestesDaDonaMariana.WinApp.ModuloMateria
 {
-	public partial class DialogMateria : Form
+    public partial class DialogMateria : Form
     {
         private Materia materia;
 
-		public DialogMateria(List<Disciplina> disciplinas)
+        public DialogMateria(List<Disciplina> disciplinas)
         {
             InitializeComponent();
 
             this.ConfigurarDialog();
 
-			cmbDisciplina.DisplayMember = "Nome";
-			cmbDisciplina.ValueMember = "Id";
-			cmbDisciplina.DataSource = disciplinas;
-		}
+            cmbDisciplina.DisplayMember = "Nome";
+            cmbDisciplina.ValueMember = "Id";
+            cmbDisciplina.DataSource = disciplinas;
+        }
 
         public Materia Materia
         {
@@ -25,9 +25,9 @@ namespace TestesDaDonaMariana.WinApp.ModuloMateria
                 materia = value;
                 labelId.Text = materia.Id.ToString();
                 txNome.Text = materia.Nome;
-				cmbDisciplina.SelectedItem = materia.Disciplina;
+                cmbDisciplina.SelectedItem = materia.Disciplina;
 
-			}
+            }
             get
             {
                 return materia;
@@ -38,7 +38,7 @@ namespace TestesDaDonaMariana.WinApp.ModuloMateria
         {
             string nome = txNome.Text;
 
-            int serie = Convert.ToInt32(txSerie.Text);
+            int serie = (int) nudSerie.Value;
 
             Disciplina disciplina = (Disciplina)cmbDisciplina.SelectedItem;
 
