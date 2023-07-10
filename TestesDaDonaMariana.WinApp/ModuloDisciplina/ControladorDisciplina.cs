@@ -1,19 +1,21 @@
 ﻿using TestesDaDonaMariana.Dominio.ModuloDisciplina;
-using TestesDaDonaMariana.WinApp.Compartilhado;
+using TestesDaDonaMariana.Dominio.ModuloMateria;
 
 namespace TestesDaDonaMariana.WinApp.ModuloDisciplina
 {
-    public class ControladorDisciplina : Controlador
+	public class ControladorDisciplina : Controlador
     {
-        IRepositorioDisciplina repositorioDisciplina;
+        private IRepositorioDisciplina RepositorioDisciplina { get; set; }
+		private IRepositorioMateria RepositorioMateria { get; set; }
 
-        public override string TipoDoCadastro => "Disciplina";
+		public override string TipoDoCadastro => "Disciplina";
 
         private TabelaDisciplina TabelaDisciplina { get; set; }
 
-        public ControladorDisciplina(IRepositorioDisciplina repositorioDisciplina)
+        public ControladorDisciplina(IRepositorioDisciplina repositorioDisciplina, IRepositorioMateria repositorioMateria)
         {
-            this.repositorioDisciplina = repositorioDisciplina;
+            RepositorioDisciplina = repositorioDisciplina;
+            RepositorioMateria = repositorioMateria;
         }
 
         public override void Inserir()
@@ -26,7 +28,7 @@ namespace TestesDaDonaMariana.WinApp.ModuloDisciplina
 
             if (resultado == DialogResult.OK)
             {
-                repositorioDisciplina.Inserir(tela.Disciplina);
+                RepositorioDisciplina.Inserir(tela.Disciplina);
 
                 CarregarEntidades();
             }
@@ -57,7 +59,7 @@ namespace TestesDaDonaMariana.WinApp.ModuloDisciplina
 
             if (resultado == DialogResult.OK)
             {
-                repositorioDisciplina.Editar(dialog.Disciplina);
+                RepositorioDisciplina.Editar(dialog.Disciplina);
 
                 CarregarEntidades();
             }
@@ -77,11 +79,11 @@ namespace TestesDaDonaMariana.WinApp.ModuloDisciplina
                 return;
             }
 
-			/*
-            bool podeExcluir =
-            repositorioMateria.VerificarMateriasAbertasDisciplina(entidade); 
 
-            if (!podeExcluir) 
+            bool existeDependencia =
+			RepositorioMateria.VerificarMateriaComDisciplina(entidade);
+
+            if (existeDependencia)
             {
                 MessageBox.Show($"Não é possível excluir uma {TipoDoCadastro} com matérias em aberto.",
                     $"Exclusão de {TipoDoCadastro}s",
@@ -90,9 +92,8 @@ namespace TestesDaDonaMariana.WinApp.ModuloDisciplina
 
                 return;
             }
-            TODO*/
 
-			/*
+            /*
             bool podeExcluir =
             repositorioMateria.VerificarTestesAbertosDisciplina(entidade); 
 
@@ -107,14 +108,14 @@ namespace TestesDaDonaMariana.WinApp.ModuloDisciplina
             }
             TODO*/
 
-			DialogResult opcao = MessageBox.Show($"Deseja excluir a {TipoDoCadastro} {entidade.Nome}?",
+            DialogResult opcao = MessageBox.Show($"Deseja excluir a {TipoDoCadastro} {entidade.Nome}?",
                                                           $"Exclusão de {TipoDoCadastro}s",
                                                           MessageBoxButtons.OKCancel,
                                                           MessageBoxIcon.Question);
 
             if (opcao == DialogResult.OK)
             {
-                repositorioDisciplina.Excluir(entidade);
+                RepositorioDisciplina.Excluir(entidade);
 
                 CarregarEntidades();
             }
@@ -122,7 +123,7 @@ namespace TestesDaDonaMariana.WinApp.ModuloDisciplina
 
         public override UserControl ObterListagem()
         {
-            TabelaDisciplina ??= new TabelaDisciplina(repositorioDisciplina.SelecionarTodos());
+            TabelaDisciplina ??= new TabelaDisciplina(RepositorioDisciplina.SelecionarTodos());
 
             CarregarEntidades();
 
@@ -131,7 +132,7 @@ namespace TestesDaDonaMariana.WinApp.ModuloDisciplina
 
         private void CarregarEntidades()
         {
-            List<Disciplina> disciplinas = repositorioDisciplina.SelecionarTodos();
+            List<Disciplina> disciplinas = RepositorioDisciplina.SelecionarTodos();
 
             TabelaDisciplina.AtualizarRegistros(disciplinas);
         }
@@ -139,7 +140,7 @@ namespace TestesDaDonaMariana.WinApp.ModuloDisciplina
         private List<string> ObterNomes()
         {
             List<string> nomes = new List<string>();
-            foreach (Disciplina d in repositorioDisciplina.SelecionarTodos())
+            foreach (Disciplina d in RepositorioDisciplina.SelecionarTodos())
             {
                 nomes.Add(d.Nome);
             }

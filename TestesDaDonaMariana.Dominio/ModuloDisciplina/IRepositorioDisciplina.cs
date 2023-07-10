@@ -1,8 +1,6 @@
-﻿using TestesDaDonaMariana.Dominio.Compartilhado;
-
-namespace TestesDaDonaMariana.Dominio.ModuloDisciplina
+﻿namespace TestesDaDonaMariana.Dominio.ModuloDisciplina
 {
-    public interface IRepositorioDisciplina
+	public interface IRepositorioDisciplina
     {
         void Inserir(Disciplina novoDisciplina);
         void Editar(Disciplina disciplina);

@@ -1,45 +1,48 @@
-﻿using System.Drawing.Drawing2D;
+﻿using TestesDaDonaMariana.Dominio.ModuloDisciplina;
 using TestesDaDonaMariana.Dominio.ModuloMateria;
 
 namespace TestesDaDonaMariana.WinApp.ModuloMateria
 {
-    public partial class DialogMateria : Form
+	public partial class DialogMateria : Form
     {
-        private EMateria materia;
+        private Materia materia;
 
-        //TODO adicionar materia
-        public DialogMateria()
+		public DialogMateria(List<Disciplina> disciplinas)
         {
             InitializeComponent();
 
             this.ConfigurarDialog();
-        }
 
-        //TODO adicionar materia
-        public EMateria Materia
+			cmbDisciplina.DisplayMember = "Nome";
+			cmbDisciplina.ValueMember = "Id";
+			cmbDisciplina.DataSource = disciplinas;
+		}
+
+        public Materia Materia
         {
             set
             {
                 materia = value;
                 labelId.Text = materia.Id.ToString();
                 txNome.Text = materia.Nome;
-            }
+				cmbDisciplina.SelectedItem = materia.Disciplina;
+
+			}
             get
             {
                 return materia;
             }
         }
 
-        //TODO adicionar materia
         private void btnGravar_Click(object sender, EventArgs e)
         {
             string nome = txNome.Text;
 
             int serie = Convert.ToInt32(txSerie.Text);
 
-            //Disciplina disciplina = (Disciplina)cmbDisciplina.SelectedItem;
+            Disciplina disciplina = (Disciplina)cmbDisciplina.SelectedItem;
 
-            materia = new EMateria(nome, serie);//, disciplina);
+            materia = new Materia(nome, serie, disciplina);
 
             List<string> resultado = materia.Validar();
             if (resultado.Count > 0)
@@ -56,11 +59,6 @@ namespace TestesDaDonaMariana.WinApp.ModuloMateria
 
                 TelaPrincipalForm.Instancia.AtualizarToolStrip("");
             }
-        }
-
-        private void label3_Click(object sender, EventArgs e)
-        {
-
         }
     }
 }

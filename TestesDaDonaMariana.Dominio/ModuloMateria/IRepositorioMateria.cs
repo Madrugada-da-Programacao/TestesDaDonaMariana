@@ -1,12 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using TestesDaDonaMariana.Dominio.ModuloDisciplina;
 
 namespace TestesDaDonaMariana.Dominio.ModuloMateria
 {
-    public interface IRepositorioMateria : IRepositorio<EMateria>
-    {
-    }
+	public interface IRepositorioMateria : IRepositorio<Materia>
+	{
+		public bool VerificarMateriaComDisciplina(Disciplina entidade);
+	}
 }

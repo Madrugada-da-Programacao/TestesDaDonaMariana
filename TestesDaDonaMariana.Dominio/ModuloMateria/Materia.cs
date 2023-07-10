@@ -1,29 +1,24 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using TestesDaDonaMariana.Dominio.ModuloDisciplina;
 
 namespace TestesDaDonaMariana.Dominio.ModuloMateria
 {
-    public class EMateria : Entidade<EMateria>
+	public class Materia : Entidade<Materia>
     {
         public string Nome { get; set; }
 
         public int Serie { get; set; }
 
-        //public Disciplina disciplina { get; set; }
+        public Disciplina Disciplina { get; set; }
 
-        public EMateria(string nome, int serie)//, Disciplina disciplina)
+        public Materia(string nome, int serie, Disciplina disciplina)
         {
             Nome = nome;
             Serie = serie;
-            //this.disciplina = disciplina;
+            Disciplina = disciplina;
         }
 
-        //TODO adicionar disciplina
-        public EMateria(int id, string nome, int serie)//, Disciplina disciplina)
-               : this(nome, serie)//, disciplina)
+        public Materia(int id, string nome, int serie, Disciplina disciplina)
+               : this(nome, serie, disciplina)
         {
             Id = id;
         }
@@ -37,20 +32,19 @@ namespace TestesDaDonaMariana.Dominio.ModuloMateria
                 erros.Add("Digite um Numero Para Serie");
             if (Serie < 1 || Serie > 9)
                 erros.Add("Digite uma Serie valida (1~9)");
-            //if (disciplina == null)
-            //    erros.Add("Escolha uma Disciplina");
+            if (Disciplina == null)
+                erros.Add("Escolha uma Disciplina");
 
             return erros;
         }
 
         public override bool Equals(object? obj)
         {
-            return obj is EMateria materia &&
+            return obj is Materia materia &&
                 Id == materia.Id &&
                 Nome == materia.Nome &&
-                Serie == materia.Serie;
-               //&& disciplina == materia.disciplina;
+                Serie == materia.Serie &&
+			    Disciplina == materia.Disciplina;
         }
-
     }
 }

@@ -1,28 +1,23 @@
 ﻿using Microsoft.Data.SqlClient;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using TestesDaDonaMariana.Dominio.ModuloDisciplina;
 using TestesDaDonaMariana.Dominio.ModuloMateria;
+using TestesDaDonaMariana.Infra.Dados.Sql.ModuloDisciplina;
 
 namespace TestesDaDonaMariana.Infra.Dados.Sql.ModuloMateria
 {
-    public class MapeadorMateria : MapeadorBase<EMateria>
+	public class MapeadorMateria : MapeadorBase<Materia>
     {
-        //TODO adicionar materia
-        public override void ConfigurarParametros(SqlCommand comando, EMateria registro)
+        public override void ConfigurarParametros(SqlCommand comando, Materia registro)
         {
             comando.Parameters.AddWithValue("ID", registro.Id);
 
             comando.Parameters.AddWithValue("NOME", registro.Nome);
             comando.Parameters.AddWithValue("SERIE", registro.Serie);
 
-            //comando.Parameters.AddWithValue("Disciplina", registro.disciplina);
+            comando.Parameters.AddWithValue("DISCIPLINA_ID", registro.Disciplina.Id);
         }
 
-        //TODO adicionar materia
-        public override EMateria ConverterRegistro(SqlDataReader leitorRegistros)
+        public override Materia ConverterRegistro(SqlDataReader leitorRegistros)
         {
             int id = Convert.ToInt32(leitorRegistros["MATERIA_ID"]);
 
@@ -30,9 +25,9 @@ namespace TestesDaDonaMariana.Infra.Dados.Sql.ModuloMateria
 
             int serie = Convert.ToInt32(leitorRegistros["MATERIA_SERIE"])!;
 
-            //Disciplina disciplina = Convert.ToString(leitorRegistros["MATERIA_DISCIPLINA"])!;
+            Disciplina disciplina = new MapeadorDisciplina().ConverterRegistro(leitorRegistros);
 
-            EMateria materia = new EMateria(id, nome, serie);//, disciplina);
+			Materia materia = new Materia(id, nome, serie, disciplina);
 
             return materia;
         }

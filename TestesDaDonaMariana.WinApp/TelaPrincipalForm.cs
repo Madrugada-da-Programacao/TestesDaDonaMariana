@@ -1,5 +1,4 @@
 using TestesDaDonaMariana.Dominio.ModuloDisciplina;
-using TestesDaDonaMariana.WinApp.Compartilhado;
 using TestesDaDonaMariana.WinApp.ModuloDisciplina;
 using TestesDaDonaMariana.Infra.Dados.Sql.ModuloDisciplina;
 using TestesDaDonaMariana.Dominio.ModuloMateria;
@@ -8,7 +7,7 @@ using TestesDaDonaMariana.Infra.Dados.Sql.ModuloMateria;
 
 namespace TestesDaDonaMariana.WinApp
 {
-    public partial class TelaPrincipalForm : Form
+	public partial class TelaPrincipalForm : Form
     {
         public static TelaPrincipalForm Instancia { get; set; }
 
@@ -41,19 +40,19 @@ namespace TestesDaDonaMariana.WinApp
 
         private void disciplinaMenuItem_Click(object sender, EventArgs e)
         {
-            Controlador = new ControladorDisciplina(RepositorioDisciplina);
+            Controlador = new ControladorDisciplina(RepositorioDisciplina, RepositorioMateria);
 
             ConfigurarTelaPrincipal(Controlador);
         }
 
 		private void materiaToolStripMenuItem_Click(object sender, EventArgs e)
 		{
-			Controlador = new ControladorMateria(RepositorioMateria);
+			Controlador = new ControladorMateria(RepositorioDisciplina, RepositorioMateria);
 
             ConfigurarTelaPrincipal(Controlador);
         }
 
-        private void quest�oToolStripMenuItem_Click(object sender, EventArgs e)
+        private void questaoToolStripMenuItem_Click(object sender, EventArgs e)
         {
             //Controlador = new ControladorConcertar(RepositorioConcertar);
 

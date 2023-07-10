@@ -1,28 +1,31 @@
-﻿using TestesDaDonaMariana.Dominio.ModuloMateria;
+﻿using TestesDaDonaMariana.Dominio.ModuloDisciplina;
+using TestesDaDonaMariana.Dominio.ModuloMateria;
 
 namespace TestesDaDonaMariana.WinApp.ModuloMateria
 {
 	public class ControladorMateria : Controlador
 	{
+		private IRepositorioDisciplina RepositorioDisciplina { get; set; }
 		private IRepositorioMateria RepositorioMateria { get; set; }
 		private TabelaMateria TabelaMateria { get; set; }
 
 
 		public override string TipoDoCadastro => "Matéria";
 
-		public ControladorMateria(IRepositorioMateria repositorioMateria)
+		public ControladorMateria(IRepositorioDisciplina repositorioDisciplina, IRepositorioMateria repositorioMateria)
 		{
+			RepositorioDisciplina = repositorioDisciplina;
 			RepositorioMateria = repositorioMateria;
 		}
 
 		public override void Inserir()
 		{
-			DialogMateria dialog = new DialogMateria();
+			DialogMateria dialog = new DialogMateria(RepositorioDisciplina.SelecionarTodos());
 			DialogResult opcaoEscolhida = dialog.ShowDialog();
 
 			if (opcaoEscolhida == DialogResult.OK)
 			{
-				EMateria entidade = dialog.Materia;
+				Materia entidade = dialog.Materia;
 
 				RepositorioMateria.Inserir(entidade);
 
@@ -32,7 +35,7 @@ namespace TestesDaDonaMariana.WinApp.ModuloMateria
 
 		public override void Editar()
 		{
-            EMateria? entidade = TabelaMateria.ObterEntidadeSelecionada();
+            Materia? entidade = TabelaMateria.ObterEntidadeSelecionada();
 
 			if (entidade == null)
 			{
@@ -44,7 +47,7 @@ namespace TestesDaDonaMariana.WinApp.ModuloMateria
 				return;
 			}
 
-			DialogMateria dialog = new DialogMateria();
+			DialogMateria dialog = new DialogMateria(RepositorioDisciplina.SelecionarTodos());
 			dialog.Materia = entidade;
 
 			DialogResult opcaoEscolhida = dialog.ShowDialog();
@@ -62,7 +65,7 @@ namespace TestesDaDonaMariana.WinApp.ModuloMateria
 		
 		public override void Excluir()
 		{
-			EMateria? entidade = TabelaMateria.ObterEntidadeSelecionada();
+			Materia? entidade = TabelaMateria.ObterEntidadeSelecionada();
 
 			if (entidade == null)
 			{
@@ -90,7 +93,7 @@ namespace TestesDaDonaMariana.WinApp.ModuloMateria
 
 		private void CarregarEntidades()
 		{
-			List<EMateria> entidades = RepositorioMateria.SelecionarTodos();
+			List<Materia> entidades = RepositorioMateria.SelecionarTodos();
 
 			TabelaMateria.AtualizarRegistros(entidades);
 		}

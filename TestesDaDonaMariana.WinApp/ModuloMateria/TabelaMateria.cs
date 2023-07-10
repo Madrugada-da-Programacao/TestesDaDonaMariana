@@ -6,7 +6,7 @@ namespace TestesDaDonaMariana.WinApp.ModuloMateria
 {
 	public partial class TabelaMateria : UserControl
 	{
-		public TabelaMateria(List<EMateria> listaDeEntidades)
+		public TabelaMateria(List<Materia> listaDeEntidades)
 		{
 			InitializeComponent();
 
@@ -17,19 +17,19 @@ namespace TestesDaDonaMariana.WinApp.ModuloMateria
 			grid.ConfigurarGridSomenteLeitura();
 		}
 
-		public void AtualizarRegistros(List<EMateria> listaDeEntidades)
+		public void AtualizarRegistros(List<Materia> listaDeEntidades)
 		{
-			BindingList<EMateria> bindingList = new BindingList<EMateria>(listaDeEntidades);
+			BindingList<Materia> bindingList = new BindingList<Materia>(listaDeEntidades);
 			BindingSource source = new BindingSource(bindingList, null);
 			grid.DataSource = source;
 		}
 
-		public EMateria? ObterEntidadeSelecionada()
+		public Materia? ObterEntidadeSelecionada()
 		{
 			List<DataGridViewRow> rows = grid.SelectedRows.Cast<DataGridViewRow>().ToList();
 			if (rows.Count > 0)
 			{
-				return rows[0].DataBoundItem as EMateria;
+				return rows[0].DataBoundItem as Materia;
 			}
 			return null;
 		}
