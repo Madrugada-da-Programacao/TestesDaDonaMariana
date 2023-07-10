@@ -30,7 +30,7 @@
 		{
 			menuStrip1 = new MenuStrip();
 			cadastrosMenuItem = new ToolStripMenuItem();
-			clientesMenuItem = new ToolStripMenuItem();
+			disciplinasMenuItem = new ToolStripMenuItem();
 			materiaToolStripMenuItem = new ToolStripMenuItem();
 			questãoToolStripMenuItem = new ToolStripMenuItem();
 			testeToolStripMenuItem = new ToolStripMenuItem();
@@ -61,17 +61,17 @@
 			// 
 			// cadastrosMenuItem
 			// 
-			cadastrosMenuItem.DropDownItems.AddRange(new ToolStripItem[] { clientesMenuItem, materiaToolStripMenuItem, questãoToolStripMenuItem, testeToolStripMenuItem });
+			cadastrosMenuItem.DropDownItems.AddRange(new ToolStripItem[] { disciplinasMenuItem, materiaToolStripMenuItem, questãoToolStripMenuItem, testeToolStripMenuItem });
 			cadastrosMenuItem.Name = "cadastrosMenuItem";
 			cadastrosMenuItem.Size = new Size(71, 20);
 			cadastrosMenuItem.Text = "Cadastros";
 			// 
-			// clientesMenuItem
+			// disciplinasMenuItem
 			// 
-			clientesMenuItem.Name = "clientesMenuItem";
-			clientesMenuItem.Size = new Size(125, 22);
-			clientesMenuItem.Text = "Disciplina";
-			clientesMenuItem.Click += clientesMenuItem_Click;
+			disciplinasMenuItem.Name = "disciplinasMenuItem";
+			disciplinasMenuItem.Size = new Size(125, 22);
+			disciplinasMenuItem.Text = "Disciplina";
+			disciplinasMenuItem.Click += disciplinaMenuItem_Click;
 			// 
 			// materiaToolStripMenuItem
 			// 
@@ -85,7 +85,7 @@
 			questãoToolStripMenuItem.Name = "questãoToolStripMenuItem";
 			questãoToolStripMenuItem.Size = new Size(125, 22);
 			questãoToolStripMenuItem.Text = "Questão";
-			questãoToolStripMenuItem.Click += questãoToolStripMenuItem_Click;
+			questãoToolStripMenuItem.Click += questaoToolStripMenuItem_Click;
 			// 
 			// testeToolStripMenuItem
 			// 
@@ -210,7 +210,7 @@
 
 		private MenuStrip menuStrip1;
 		private ToolStripMenuItem cadastrosMenuItem;
-		private ToolStripMenuItem clientesMenuItem;
+		private ToolStripMenuItem disciplinasMenuItem;
 		private ToolStripMenuItem tarefasMenuItem;
 		private StatusStrip statusStrip1;
 		private ToolStripStatusLabel labelRodape;
