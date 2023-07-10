@@ -1,4 +1,6 @@
-﻿using TestesDaDonaMariana.Dominio.ModuloQuestao;
+﻿using TestesDaDonaMariana.Dominio.ModuloDisciplina;
+using TestesDaDonaMariana.Dominio.ModuloMateria;
+using TestesDaDonaMariana.Dominio.ModuloQuestao;
 
 namespace TestesDaDonaMariana.WinApp.ModuloQuestao
 {
@@ -6,19 +8,17 @@ namespace TestesDaDonaMariana.WinApp.ModuloQuestao
 	{
 		private Questao questao;
 
-		//TODO adicionar materia
-		public DialogQuestao()
+		public DialogQuestao(List<Materia> materias)
 		{
 			InitializeComponent();
 
 			this.ConfigurarDialog();
 
-			//cmbMateria.DisplayMember = "Nome";
-			//cmbMateria.ValueMember = "Id";
-			//cmbMateria.DataSource = materias;
+			cmbMateria.DisplayMember = "Nome" + "Serie";
+			cmbMateria.ValueMember = "Id";
+			cmbMateria.DataSource = materias;
 		}
 
-		//TODO adicionar materia
 		public Questao Questao
 		{
 			set
@@ -32,6 +32,7 @@ namespace TestesDaDonaMariana.WinApp.ModuloQuestao
 				txtOpcaoD.Text = questao.TextoOpcaoD;
 
 				cmbRespostaCerta.SelectedIndex = cmbRespostaCerta.FindStringExact(questao.RespostaCerta.ToString());
+				cmbMateria.SelectedItem = questao.Materia;
 			}
 			get
 			{
@@ -39,7 +40,6 @@ namespace TestesDaDonaMariana.WinApp.ModuloQuestao
 			}
 		}
 
-		//TODO adicionar materia
 		private void btnGravar_Click(object sender, EventArgs e)
 		{
 			string enunciado = txtEnunciado.Text;
@@ -51,9 +51,9 @@ namespace TestesDaDonaMariana.WinApp.ModuloQuestao
 
 			char respostaCerta = Convert.ToChar(cmbRespostaCerta.SelectedItem);
 
-			//Materia materia = (Materia)cmbMateria.SelectedItem;
+			Materia materia = (Materia)cmbMateria.SelectedItem;
 
-			questao = new Questao(enunciado, textoOpcaoA, textoOpcaoB, textoOpcaoC, textoOpcaoD, respostaCerta);//, materia);
+			questao = new Questao(enunciado, textoOpcaoA, textoOpcaoB, textoOpcaoC, textoOpcaoD, respostaCerta, materia);
 
 			List<string> resultado = questao.Validar();
 			if (resultado.Count > 0)

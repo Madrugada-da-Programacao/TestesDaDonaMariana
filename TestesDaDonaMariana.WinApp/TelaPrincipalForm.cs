@@ -57,8 +57,9 @@ namespace TestesDaDonaMariana.WinApp
 
         private void questaoToolStripMenuItem_Click(object sender, EventArgs e)
         {
+			Controlador = new ControladorQuestao(RepositorioMateria, RepositorioQuestao);
 
-            ConfigurarTelaPrincipal(Controlador);
+			ConfigurarTelaPrincipal(Controlador);
         }
 
         private void testeToolStripMenuItem_Click(object sender, EventArgs e)

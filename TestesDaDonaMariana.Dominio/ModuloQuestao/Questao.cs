@@ -1,4 +1,5 @@
 ﻿using System.Drawing;
+using TestesDaDonaMariana.Dominio.ModuloMateria;
 
 namespace TestesDaDonaMariana.Dominio.ModuloQuestao
 {
@@ -10,11 +11,9 @@ namespace TestesDaDonaMariana.Dominio.ModuloQuestao
 		public string TextoOpcaoC { get; set; }
 		public string TextoOpcaoD { get; set; }
 		public char RespostaCerta { get; set; }
-		//TODO adicionar materia
-		//public Materia Materia { get; set; }
+		public Materia Materia { get; set; }
 
-		//TODO adicionar materia
-		public Questao(string enunciado, string textoOpcaoA, string textoOpcaoB, string textoOpcaoC, string textoOpcaoD, char respostaCerta)//, Materia materia)
+		public Questao(string enunciado, string textoOpcaoA, string textoOpcaoB, string textoOpcaoC, string textoOpcaoD, char respostaCerta, Materia materia)
 		{
 			Enunciado = enunciado;
 			TextoOpcaoA = textoOpcaoA;
@@ -22,12 +21,11 @@ namespace TestesDaDonaMariana.Dominio.ModuloQuestao
 			TextoOpcaoC = textoOpcaoC;
 			TextoOpcaoD = textoOpcaoD;
 			RespostaCerta = respostaCerta;
-			//Materia = materia;
+			Materia = materia;
 		}
 
-		//TODO adicionar materia
-		public Questao(int id, string enunciado, string textoOpcaoA, string textoOpcaoB, string textoOpcaoC, string textoOpcaoD, char respostaCerta)//, Materia materia)
-			: this(enunciado, textoOpcaoA, textoOpcaoB, textoOpcaoC, textoOpcaoD, respostaCerta)// materia)
+		public Questao(int id, string enunciado, string textoOpcaoA, string textoOpcaoB, string textoOpcaoC, string textoOpcaoD, char respostaCerta, Materia materia)
+			: this(enunciado, textoOpcaoA, textoOpcaoB, textoOpcaoC, textoOpcaoD, respostaCerta, materia)
 		{
 			Id = id;
 		}
@@ -45,9 +43,8 @@ namespace TestesDaDonaMariana.Dominio.ModuloQuestao
 				erros.Add("Digite um Texto para a Opção C valido");
 			if (string.IsNullOrWhiteSpace(TextoOpcaoD))
 				erros.Add("Digite um Texto para a Opção D valido");
-			//TODO adicionar materia
-			//if (Materia = null)
-			//	erros.Add("Selecione uma Materia");
+			if (Materia == null)
+				erros.Add("Selecione uma Materia");
 
 			return erros;
 		}
@@ -60,9 +57,8 @@ namespace TestesDaDonaMariana.Dominio.ModuloQuestao
 				TextoOpcaoB == questao.TextoOpcaoB &&
 				TextoOpcaoC == questao.TextoOpcaoC &&
 				TextoOpcaoD == questao.TextoOpcaoD &&
-				RespostaCerta == questao.RespostaCerta;
-				//TODO adicionar materia
-				//Materia == questao.Materia;
+				RespostaCerta == questao.RespostaCerta &&
+				Materia == questao.Materia;
 		}
 	}
 }

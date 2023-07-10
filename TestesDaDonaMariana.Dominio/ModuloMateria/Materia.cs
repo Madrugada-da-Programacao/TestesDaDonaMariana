@@ -46,5 +46,10 @@ namespace TestesDaDonaMariana.Dominio.ModuloMateria
                 Serie == materia.Serie &&
 			    Disciplina == materia.Disciplina;
         }
-    }
+
+		public override string? ToString()
+		{
+			return $"{Nome} da {Serie} Série";
+		}
+	}
 }

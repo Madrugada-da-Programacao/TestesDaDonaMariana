@@ -1,23 +1,25 @@
-﻿using TestesDaDonaMariana.Dominio.ModuloQuestao;
+﻿using TestesDaDonaMariana.Dominio.ModuloMateria;
+using TestesDaDonaMariana.Dominio.ModuloQuestao;
 
 namespace TestesDaDonaMariana.WinApp.ModuloQuestao
 {
 	public class ControladorQuestao : Controlador
 	{
+		private IRepositorioMateria RepositorioMateria{ get; set; }
 		private IRepositorioQuestao RepositorioQuestao { get; set; }
 		private TabelaQuestao TabelaQuestao { get; set; }
 
-
 		public override string TipoDoCadastro => "Questão";
 
-		public ControladorQuestao(IRepositorioQuestao repositorioQuestao)
+		public ControladorQuestao(IRepositorioMateria repositorioMateria, IRepositorioQuestao repositorioQuestao)
 		{
+			RepositorioMateria = repositorioMateria;
 			RepositorioQuestao = repositorioQuestao;
 		}
 
 		public override void Inserir()
 		{
-			DialogQuestao dialog = new DialogQuestao();
+			DialogQuestao dialog = new DialogQuestao(RepositorioMateria.SelecionarTodos());
 			DialogResult opcaoEscolhida = dialog.ShowDialog();
 
 			if (opcaoEscolhida == DialogResult.OK)
@@ -44,7 +46,7 @@ namespace TestesDaDonaMariana.WinApp.ModuloQuestao
 				return;
 			}
 
-			DialogQuestao dialog = new DialogQuestao();
+			DialogQuestao dialog = new DialogQuestao(RepositorioMateria.SelecionarTodos());
 			dialog.Questao = entidade;
 
 			DialogResult opcaoEscolhida = dialog.ShowDialog();

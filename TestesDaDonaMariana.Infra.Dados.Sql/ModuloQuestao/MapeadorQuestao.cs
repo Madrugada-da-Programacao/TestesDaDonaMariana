@@ -1,11 +1,12 @@
 ﻿using Microsoft.Data.SqlClient;
+using TestesDaDonaMariana.Dominio.ModuloMateria;
 using TestesDaDonaMariana.Dominio.ModuloQuestao;
+using TestesDaDonaMariana.Infra.Dados.Sql.ModuloMateria;
 
 namespace TestesDaDonaMariana.Infra.Dados.Sql.ModuloQuestao
 {
 	public class MapeadorQuestao : MapeadorBase<Questao>
 	{
-		//TODO adicionar materia
 		public override void ConfigurarParametros(SqlCommand comando, Questao registro)
 		{
 			comando.Parameters.AddWithValue("ID", registro.Id);
@@ -19,10 +20,9 @@ namespace TestesDaDonaMariana.Infra.Dados.Sql.ModuloQuestao
 
 			comando.Parameters.AddWithValue("RESPOSTA_CERTA", registro.RespostaCerta);
 
-			//comando.Parameters.AddWithValue("MATERIA", registro.Materia);
+			comando.Parameters.AddWithValue("MATERIA_ID", registro.Materia.Id);
 		}
 
-		//TODO adicionar materia
 		public override Questao ConverterRegistro(SqlDataReader leitorRegistros)
 		{
 			int id = Convert.ToInt32(leitorRegistros["QUESTAO_ID"]);
@@ -36,9 +36,9 @@ namespace TestesDaDonaMariana.Infra.Dados.Sql.ModuloQuestao
 
 			char respostaCerta = Convert.ToChar(leitorRegistros["QUESTAO_RESPOSTA_CERTA"])!;
 
-			//Materia materia = Repositorio.SelecionarPorId(Convert.ToInt32(leitorRegistros["QUESTAO_MATERIA"]));
+			Materia materia = new MapeadorMateria().ConverterRegistro(leitorRegistros);
 
-			Questao questao = new Questao(id, enunciado, textoOpcaoA, textoOpcaoB, textoOpcaoC, textoOpcaoD, respostaCerta);//, materia);
+			Questao questao = new Questao(id, enunciado, textoOpcaoA, textoOpcaoB, textoOpcaoC, textoOpcaoD, respostaCerta, materia);
 
 			return questao;
 		}
