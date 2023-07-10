@@ -1,5 +1,8 @@
 ﻿CREATE TABLE [dbo].[TBDisciplina] (
-    [Id] INT IDENTITY (1, 1) NOT NULL,
-    PRIMARY KEY CLUSTERED ([Id] ASC)
+    [Id]   INT           IDENTITY (1, 1) NOT NULL,
+    [Nome] VARCHAR (200) NOT NULL,
+    CONSTRAINT [PK__TBDiscip__3214EC07A374CB88] PRIMARY KEY CLUSTERED ([Id] ASC)
 );
+
+
 

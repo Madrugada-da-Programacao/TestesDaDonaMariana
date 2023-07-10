@@ -1,4 +1,4 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk">
 
 	<PropertyGroup>
 		<OutputType>WinExe</OutputType>
@@ -8,9 +8,18 @@
 		<ImplicitUsings>enable</ImplicitUsings>
 	</PropertyGroup>
 
-	<ItemGroup>
-		<ProjectReference Include="..\TestesDaDonaMariana.Infra.Dados.Sql\TestesDaDonaMariana.Infra.Dados.Sql.csproj" />
-	</ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\TestesDaDonaMariana.Dominio\TestesDaDonaMariana.Dominio.csproj" />
+    <ProjectReference Include="..\TestesDaDonaMariana.Infra.Dados.Sql\TestesDaDonaMariana.Infra.Dados.Sql.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Update="Properties\Resources.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+  </ItemGroup>
 
 	<ItemGroup>
 		<Compile Update="Properties\Resources.Designer.cs">

@@ -1,17 +1,20 @@
+using TestesDaDonaMariana.Dominio.ModuloDisciplina;
 using TestesDaDonaMariana.WinApp.Compartilhado;
+using TestesDaDonaMariana.WinApp.ModuloDisciplina;
+using TestesDaDonaMariana.Infra.Dados.Sql.ModuloDisciplina;
 using TestesDaDonaMariana.Dominio.ModuloMateria;
 using TestesDaDonaMariana.WinApp.ModuloMateria;
 using TestesDaDonaMariana.Infra.Dados.Sql.ModuloMateria;
 
 namespace TestesDaDonaMariana.WinApp
 {
-	public partial class TelaPrincipalForm : Form
-	{
-		public static TelaPrincipalForm Instancia { get; set; }
+    public partial class TelaPrincipalForm : Form
+    {
+        public static TelaPrincipalForm Instancia { get; set; }
 
-		private Controlador Controlador { get; set; }
+        private Controlador Controlador { get; set; }
 
-        //private IRepositorioDisciplina RepositorioDisciplina { get; set; }
+        private IRepositorioDisciplina RepositorioDisciplina = new RepositorioDisciplinaEmSql();
         private IRepositorioMateria RepositorioMateria { get; set; } = new RepositorioMateriaEmSql();
         //private IRepositorioQuestao RepositorioQuestao { get; set; }
         //private IRepositorioTeste RepositorioTeste { get; set; }
@@ -19,96 +22,96 @@ namespace TestesDaDonaMariana.WinApp
 
 
         public TelaPrincipalForm()
-		{
-			InitializeComponent();
-			Instancia = this;
-		}
+        {
+            InitializeComponent();
+            Instancia = this;
+        }
 
-		public void AtualizarToolStrip(string text)
-		{
-			labelRodape.Text = text;
-		}
+        public void AtualizarToolStrip(string text)
+        {
+            labelRodape.Text = text;
+        }
 
-		private void itensTemaMenuItem_Click(object sender, EventArgs e)
-		{
-			//Controlador = new ControladorItemTema(RepositorioItemTema);
+        private void itensTemaMenuItem_Click(object sender, EventArgs e)
+        {
+            //Controlador = new ControladorItemTema(RepositorioItemTema);
 
-			ConfigurarTelaPrincipal(Controlador);
-		}
+            ConfigurarTelaPrincipal(Controlador);
+        }
 
-		private void clientesMenuItem_Click(object sender, EventArgs e)
-		{
-			//Controlador = new ControladorConcertar(RepositorioConcertar);
+        private void disciplinaMenuItem_Click(object sender, EventArgs e)
+        {
+            Controlador = new ControladorDisciplina(RepositorioDisciplina);
 
-			ConfigurarTelaPrincipal(Controlador);
-		}
+            ConfigurarTelaPrincipal(Controlador);
+        }
 
 		private void materiaToolStripMenuItem_Click(object sender, EventArgs e)
 		{
 			Controlador = new ControladorMateria(RepositorioMateria);
 
-			ConfigurarTelaPrincipal(Controlador);
-		}
+            ConfigurarTelaPrincipal(Controlador);
+        }
 
-		private void questãoToolStripMenuItem_Click(object sender, EventArgs e)
-		{
-			//Controlador = new ControladorConcertar(RepositorioConcertar);
+        private void questï¿½oToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            //Controlador = new ControladorConcertar(RepositorioConcertar);
 
-			ConfigurarTelaPrincipal(Controlador);
-		}
+            ConfigurarTelaPrincipal(Controlador);
+        }
 
-		private void testeToolStripMenuItem_Click(object sender, EventArgs e)
-		{
-			//Controlador = new ControladorConcertar(RepositorioConcertar);
+        private void testeToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            //Controlador = new ControladorConcertar(RepositorioConcertar);
 
-			ConfigurarTelaPrincipal(Controlador);
-		}
+            ConfigurarTelaPrincipal(Controlador);
+        }
 
-		private void ConfigurarTelaPrincipal(Controlador controladorBase)
-		{
-			labelTipoCadastro.Text = controladorBase.ObterTipoCadastro;
+        private void ConfigurarTelaPrincipal(Controlador controladorBase)
+        {
+            labelTipoCadastro.Text = controladorBase.ObterTipoCadastro;
 
-			ConfigurarToolTips(Controlador);
+            ConfigurarToolTips(Controlador);
 
-			ConfigurarListagem(Controlador);
-		}
+            ConfigurarListagem(Controlador);
+        }
 
-		private void ConfigurarToolTips(Controlador controlador)
-		{
-			btnInserir.ToolTipText = controlador.ToolTipInserir;
-			btnEditar.ToolTipText = controlador.ToolTipEditar;
-			btnExcluir.ToolTipText = controlador.ToolTipExcluir;
+        private void ConfigurarToolTips(Controlador controlador)
+        {
+            btnInserir.ToolTipText = controlador.ToolTipInserir;
+            btnEditar.ToolTipText = controlador.ToolTipEditar;
+            btnExcluir.ToolTipText = controlador.ToolTipExcluir;
 
-			btnInserir.Enabled = controlador.ToolTipEnableInserir;
-			btnEditar.Enabled = controlador.ToolTipEnableEditar;
-			btnExcluir.Enabled = controlador.ToolTipEnableExcluir;
-		}
+            btnInserir.Enabled = controlador.ToolTipEnableInserir;
+            btnEditar.Enabled = controlador.ToolTipEnableEditar;
+            btnExcluir.Enabled = controlador.ToolTipEnableExcluir;
+        }
 
-		private void ConfigurarListagem(Controlador controladorBase)
-		{
-			UserControl listagem = controladorBase.ObterListagem();
+        private void ConfigurarListagem(Controlador controladorBase)
+        {
+            UserControl listagem = controladorBase.ObterListagem();
 
-			listagem.Dock = DockStyle.Fill;
+            listagem.Dock = DockStyle.Fill;
 
-			panelRegistros.Controls.Clear();
+            panelRegistros.Controls.Clear();
 
-			panelRegistros.Controls.Add(listagem);
-		}
+            panelRegistros.Controls.Add(listagem);
+        }
 
 
-		private void btnInserir_Click(object sender, EventArgs e)
-		{
-			Controlador.Inserir();
-		}
+        private void btnInserir_Click(object sender, EventArgs e)
+        {
+            Controlador.Inserir();
+        }
 
-		private void btnEditar_Click(object sender, EventArgs e)
-		{
-			Controlador.Editar();
-		}
+        private void btnEditar_Click(object sender, EventArgs e)
+        {
+            Controlador.Editar();
+        }
 
-		private void btnExcluir_Click(object sender, EventArgs e)
-		{
-			Controlador.Excluir();
-		}
-	}
+        private void btnExcluir_Click(object sender, EventArgs e)
+        {
+            Controlador.Excluir();
+        }
+    }
 }
