@@ -1,18 +1,20 @@
 using TestesDaDonaMariana.Dominio.ModuloDisciplina;
-using TestesDaDonaMariana.WinApp.Compartilhado;
 using TestesDaDonaMariana.WinApp.ModuloDisciplina;
 using TestesDaDonaMariana.Infra.Dados.Sql.ModuloDisciplina;
+using TestesDaDonaMariana.Dominio.ModuloMateria;
+using TestesDaDonaMariana.WinApp.ModuloMateria;
+using TestesDaDonaMariana.Infra.Dados.Sql.ModuloMateria;
 
 namespace TestesDaDonaMariana.WinApp
 {
-    public partial class TelaPrincipalForm : Form
+	public partial class TelaPrincipalForm : Form
     {
         public static TelaPrincipalForm Instancia { get; set; }
 
         private Controlador Controlador { get; set; }
 
         private IRepositorioDisciplina RepositorioDisciplina = new RepositorioDisciplinaEmSql();
-        //private IRepositorioMateria RepositorioMateria { get; set; }
+        private IRepositorioMateria RepositorioMateria { get; set; } = new RepositorioMateriaEmSql();
         //private IRepositorioQuestao RepositorioQuestao { get; set; }
         //private IRepositorioTeste RepositorioTeste { get; set; }
 
@@ -38,19 +40,19 @@ namespace TestesDaDonaMariana.WinApp
 
         private void disciplinaMenuItem_Click(object sender, EventArgs e)
         {
-            Controlador = new ControladorDisciplina(RepositorioDisciplina);
+            Controlador = new ControladorDisciplina(RepositorioDisciplina, RepositorioMateria);
 
             ConfigurarTelaPrincipal(Controlador);
         }
 
-        private void materiaToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            //Controlador = new ControladorConcertar(RepositorioConcertar);
+		private void materiaToolStripMenuItem_Click(object sender, EventArgs e)
+		{
+			Controlador = new ControladorMateria(RepositorioDisciplina, RepositorioMateria);
 
             ConfigurarTelaPrincipal(Controlador);
         }
 
-        private void questãoToolStripMenuItem_Click(object sender, EventArgs e)
+        private void questaoToolStripMenuItem_Click(object sender, EventArgs e)
         {
             //Controlador = new ControladorConcertar(RepositorioConcertar);
 

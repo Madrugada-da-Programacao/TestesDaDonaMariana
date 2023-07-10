@@ -1,9 +1,8 @@
 ﻿using TestesDaDonaMariana.Dominio.ModuloDisciplina;
-using TestesDaDonaMariana.WinApp.Compartilhado;
 
 namespace TestesDaDonaMariana.WinApp.ModuloDisciplina
 {
-    public partial class DialogDisciplina : Form
+	public partial class DialogDisciplina : Form
     {
         private List<string> Nomes { get; set; }
 

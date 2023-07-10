@@ -1,10 +1,8 @@
-﻿using TestesDaDonaMariana.Infra.Dados.Sql.Compartilhado;
-using Microsoft.Data.SqlClient;
-using TestesDaDonaMariana.Dominio.ModuloDisciplina;
+﻿using TestesDaDonaMariana.Dominio.ModuloDisciplina;
 
 namespace TestesDaDonaMariana.Infra.Dados.Sql.ModuloDisciplina
 {
-    public class RepositorioDisciplinaEmSql : RepositorioEmSql<Disciplina, MapeadorDisciplina>, IRepositorioDisciplina
+	public class RepositorioDisciplinaEmSql : RepositorioEmSql<Disciplina, MapeadorDisciplina>, IRepositorioDisciplina
     {
         protected override string sqlInserir =>
             @"INSERT INTO [TBDISCIPLINA] 

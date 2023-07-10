@@ -85,7 +85,7 @@ namespace TestesDaDonaMariana.WinApp
 			questãoToolStripMenuItem.Name = "questãoToolStripMenuItem";
 			questãoToolStripMenuItem.Size = new Size(125, 22);
 			questãoToolStripMenuItem.Text = "Questão";
-			questãoToolStripMenuItem.Click += questãoToolStripMenuItem_Click;
+			questãoToolStripMenuItem.Click += questaoToolStripMenuItem_Click;
 			// 
 			// testeToolStripMenuItem
 			// 
