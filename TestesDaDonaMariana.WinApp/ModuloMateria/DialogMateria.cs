@@ -26,7 +26,7 @@ namespace TestesDaDonaMariana.WinApp.ModuloMateria
                 labelId.Text = materia.Id.ToString();
                 txNome.Text = materia.Nome;
                 cmbDisciplina.SelectedItem = materia.Disciplina;
-
+                nudSerie.Value = materia.Serie;
             }
             get
             {
