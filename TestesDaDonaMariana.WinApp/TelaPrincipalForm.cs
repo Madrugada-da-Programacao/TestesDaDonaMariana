@@ -7,6 +7,9 @@ using TestesDaDonaMariana.Infra.Dados.Sql.ModuloMateria;
 using TestesDaDonaMariana.Dominio.ModuloQuestao;
 using TestesDaDonaMariana.Infra.Dados.Sql.ModuloQuestao;
 using TestesDaDonaMariana.WinApp.ModuloQuestao;
+using TestesDaDonaMariana.Dominio.ModuloTeste;
+using TestesDaDonaMariana.Infra.Dados.Sql.ModuloTeste;
+using TestesDaDonaMariana.WinApp.ModuloTeste;
 
 namespace TestesDaDonaMariana.WinApp
 {
@@ -19,7 +22,7 @@ namespace TestesDaDonaMariana.WinApp
         private IRepositorioDisciplina RepositorioDisciplina = new RepositorioDisciplinaEmSql();
         private IRepositorioMateria RepositorioMateria { get; set; } = new RepositorioMateriaEmSql();
 		private IRepositorioQuestao RepositorioQuestao { get; set; } = new RepositorioQuestaoEmSql();
-        //private IRepositorioTeste RepositorioTeste { get; set; }
+        private IRepositorioTeste RepositorioTeste { get; set; } = new RepositorioTesteEmSql();
 
 
 
@@ -32,13 +35,6 @@ namespace TestesDaDonaMariana.WinApp
         public void AtualizarToolStrip(string text)
         {
             labelRodape.Text = text;
-        }
-
-        private void itensTemaMenuItem_Click(object sender, EventArgs e)
-        {
-            //Controlador = new ControladorItemTema(RepositorioItemTema);
-
-            ConfigurarTelaPrincipal(Controlador);
         }
 
         private void disciplinaMenuItem_Click(object sender, EventArgs e)
@@ -64,7 +60,7 @@ namespace TestesDaDonaMariana.WinApp
 
         private void testeToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            //Controlador = new ControladorConcertar(RepositorioConcertar);
+            Controlador = new ControladorTeste(RepositorioDisciplina, RepositorioMateria, RepositorioQuestao, RepositorioTeste);
 
             ConfigurarTelaPrincipal(Controlador);
         }
