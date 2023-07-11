@@ -1,5 +1,4 @@
-﻿using TestesDaDonaMariana.Dominio.ModuloDisciplina;
-using TestesDaDonaMariana.Dominio.ModuloMateria;
+﻿using TestesDaDonaMariana.Dominio.ModuloMateria;
 using TestesDaDonaMariana.Dominio.ModuloQuestao;
 
 namespace TestesDaDonaMariana.WinApp.ModuloQuestao

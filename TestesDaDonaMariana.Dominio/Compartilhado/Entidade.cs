@@ -15,10 +15,6 @@
             });
         }
 
-        public virtual void RemoverReferenciasDeMemoria()
-        {
-        }
-
         public abstract List<string> Validar();
     }
 }

@@ -1,5 +1,4 @@
-﻿using System.Drawing;
-using TestesDaDonaMariana.Dominio.ModuloMateria;
+﻿using TestesDaDonaMariana.Dominio.ModuloMateria;
 
 namespace TestesDaDonaMariana.Dominio.ModuloQuestao
 {
@@ -59,6 +58,11 @@ namespace TestesDaDonaMariana.Dominio.ModuloQuestao
 				TextoOpcaoD == questao.TextoOpcaoD &&
 				RespostaCerta == questao.RespostaCerta &&
 				Materia == questao.Materia;
+		}
+
+		public override string? ToString()
+		{
+			return Enunciado;
 		}
 	}
 }
