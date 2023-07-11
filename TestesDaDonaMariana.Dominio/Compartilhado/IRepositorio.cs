@@ -1,12 +1,12 @@
 ﻿namespace TestesDaDonaMariana.Dominio.Compartilhado
 {
-    public interface IRepositorio<TipoEntidade>
-        where TipoEntidade : Entidade<TipoEntidade>
+    public interface IRepositorio<TEntidade>
+        where TEntidade : Entidade<TEntidade>
     {
-        public void Inserir(TipoEntidade entidade);
-        public void Editar(TipoEntidade entidade);
-        public void Excluir(TipoEntidade entidade);
-        public TipoEntidade? SelecionarPeloId(int id);
-        public List<TipoEntidade> SelecionarTodos();
+        public void Inserir(TEntidade entidade);
+        public void Editar(TEntidade entidade);
+        public void Excluir(TEntidade entidade);
+        public TEntidade? SelecionarPeloId(int id);
+        public List<TEntidade> SelecionarTodos();
     }
 }

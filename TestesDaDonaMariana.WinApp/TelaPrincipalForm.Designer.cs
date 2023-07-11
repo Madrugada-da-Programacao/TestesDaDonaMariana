@@ -30,7 +30,7 @@
 		{
 			menuStrip1 = new MenuStrip();
 			cadastrosMenuItem = new ToolStripMenuItem();
-			clientesMenuItem = new ToolStripMenuItem();
+			disciplinasMenuItem = new ToolStripMenuItem();
 			materiaToolStripMenuItem = new ToolStripMenuItem();
 			questãoToolStripMenuItem = new ToolStripMenuItem();
 			testeToolStripMenuItem = new ToolStripMenuItem();
@@ -44,6 +44,7 @@
 			labelTipoCadastro = new ToolStripLabel();
 			panelRegistros = new Panel();
 			alugueisToolStripMenuItem = new ToolStripMenuItem();
+			btnCopiarTeste = new ToolStripButton();
 			menuStrip1.SuspendLayout();
 			statusStrip1.SuspendLayout();
 			barraFerramentas.SuspendLayout();
@@ -61,36 +62,36 @@
 			// 
 			// cadastrosMenuItem
 			// 
-			cadastrosMenuItem.DropDownItems.AddRange(new ToolStripItem[] { clientesMenuItem, materiaToolStripMenuItem, questãoToolStripMenuItem, testeToolStripMenuItem });
+			cadastrosMenuItem.DropDownItems.AddRange(new ToolStripItem[] { disciplinasMenuItem, materiaToolStripMenuItem, questãoToolStripMenuItem, testeToolStripMenuItem });
 			cadastrosMenuItem.Name = "cadastrosMenuItem";
 			cadastrosMenuItem.Size = new Size(71, 20);
 			cadastrosMenuItem.Text = "Cadastros";
 			// 
-			// clientesMenuItem
+			// disciplinasMenuItem
 			// 
-			clientesMenuItem.Name = "clientesMenuItem";
-			clientesMenuItem.Size = new Size(180, 22);
-			clientesMenuItem.Text = "Disciplina";
-			clientesMenuItem.Click += clientesMenuItem_Click;
+			disciplinasMenuItem.Name = "disciplinasMenuItem";
+			disciplinasMenuItem.Size = new Size(125, 22);
+			disciplinasMenuItem.Text = "Disciplina";
+			disciplinasMenuItem.Click += disciplinaMenuItem_Click;
 			// 
 			// materiaToolStripMenuItem
 			// 
 			materiaToolStripMenuItem.Name = "materiaToolStripMenuItem";
-			materiaToolStripMenuItem.Size = new Size(180, 22);
+			materiaToolStripMenuItem.Size = new Size(125, 22);
 			materiaToolStripMenuItem.Text = "Materia";
 			materiaToolStripMenuItem.Click += materiaToolStripMenuItem_Click;
 			// 
 			// questãoToolStripMenuItem
 			// 
 			questãoToolStripMenuItem.Name = "questãoToolStripMenuItem";
-			questãoToolStripMenuItem.Size = new Size(180, 22);
+			questãoToolStripMenuItem.Size = new Size(125, 22);
 			questãoToolStripMenuItem.Text = "Questão";
-			questãoToolStripMenuItem.Click += questãoToolStripMenuItem_Click;
+			questãoToolStripMenuItem.Click += questaoToolStripMenuItem_Click;
 			// 
 			// testeToolStripMenuItem
 			// 
 			testeToolStripMenuItem.Name = "testeToolStripMenuItem";
-			testeToolStripMenuItem.Size = new Size(180, 22);
+			testeToolStripMenuItem.Size = new Size(125, 22);
 			testeToolStripMenuItem.Text = "Teste";
 			testeToolStripMenuItem.Click += testeToolStripMenuItem_Click;
 			// 
@@ -112,9 +113,8 @@
 			// 
 			// barraFerramentas
 			// 
-			barraFerramentas.Enabled = false;
 			barraFerramentas.ImageScalingSize = new Size(20, 20);
-			barraFerramentas.Items.AddRange(new ToolStripItem[] { btnInserir, btnEditar, btnExcluir, toolStripSeparator2, labelTipoCadastro });
+			barraFerramentas.Items.AddRange(new ToolStripItem[] { btnInserir, btnEditar, btnExcluir, toolStripSeparator2, btnCopiarTeste, labelTipoCadastro });
 			barraFerramentas.Location = new Point(0, 24);
 			barraFerramentas.Name = "barraFerramentas";
 			barraFerramentas.Size = new Size(800, 45);
@@ -124,32 +124,38 @@
 			// btnInserir
 			// 
 			btnInserir.DisplayStyle = ToolStripItemDisplayStyle.Image;
+			btnInserir.Enabled = false;
 			btnInserir.Image = Properties.Resources.add_circle_FILL0_wght400_GRAD0_opsz24;
 			btnInserir.ImageScaling = ToolStripItemImageScaling.None;
 			btnInserir.ImageTransparentColor = Color.Magenta;
 			btnInserir.Name = "btnInserir";
 			btnInserir.Padding = new Padding(7);
 			btnInserir.Size = new Size(42, 42);
+			btnInserir.Click += btnInserir_Click;
 			// 
 			// btnEditar
 			// 
 			btnEditar.DisplayStyle = ToolStripItemDisplayStyle.Image;
+			btnEditar.Enabled = false;
 			btnEditar.Image = Properties.Resources.edit_FILL0_wght400_GRAD0_opsz24;
 			btnEditar.ImageScaling = ToolStripItemImageScaling.None;
 			btnEditar.ImageTransparentColor = Color.Magenta;
 			btnEditar.Name = "btnEditar";
 			btnEditar.Padding = new Padding(7);
 			btnEditar.Size = new Size(42, 42);
+			btnEditar.Click += btnEditar_Click;
 			// 
 			// btnExcluir
 			// 
 			btnExcluir.DisplayStyle = ToolStripItemDisplayStyle.Image;
+			btnExcluir.Enabled = false;
 			btnExcluir.Image = Properties.Resources.delete_FILL0_wght400_GRAD0_opsz24;
 			btnExcluir.ImageScaling = ToolStripItemImageScaling.None;
 			btnExcluir.ImageTransparentColor = Color.Magenta;
 			btnExcluir.Name = "btnExcluir";
 			btnExcluir.Padding = new Padding(7);
 			btnExcluir.Size = new Size(42, 42);
+			btnExcluir.Click += btnExcluir_Click;
 			// 
 			// toolStripSeparator2
 			// 
@@ -176,6 +182,18 @@
 			alugueisToolStripMenuItem.Name = "alugueisToolStripMenuItem";
 			alugueisToolStripMenuItem.Size = new Size(180, 22);
 			alugueisToolStripMenuItem.Text = "Materia";
+			// 
+			// btnCopiarTeste
+			// 
+			btnCopiarTeste.DisplayStyle = ToolStripItemDisplayStyle.Image;
+			btnCopiarTeste.Enabled = false;
+			btnCopiarTeste.Image = Properties.Resources.content_copy_FILL0_wght400_GRAD0_opsz24;
+			btnCopiarTeste.ImageScaling = ToolStripItemImageScaling.None;
+			btnCopiarTeste.ImageTransparentColor = Color.Magenta;
+			btnCopiarTeste.Name = "btnCopiarTeste";
+			btnCopiarTeste.Padding = new Padding(7);
+			btnCopiarTeste.Size = new Size(42, 42);
+			btnCopiarTeste.Click += btnCopiarTeste_Click;
 			// 
 			// TelaPrincipalForm
 			// 
@@ -205,7 +223,7 @@
 
 		private MenuStrip menuStrip1;
 		private ToolStripMenuItem cadastrosMenuItem;
-		private ToolStripMenuItem clientesMenuItem;
+		private ToolStripMenuItem disciplinasMenuItem;
 		private ToolStripMenuItem tarefasMenuItem;
 		private StatusStrip statusStrip1;
 		private ToolStripStatusLabel labelRodape;
@@ -225,5 +243,6 @@
 		private ToolStripMenuItem materiaToolStripMenuItem;
 		private ToolStripMenuItem questãoToolStripMenuItem;
 		private ToolStripMenuItem testeToolStripMenuItem;
+		private ToolStripButton btnCopiarTeste;
 	}
 }

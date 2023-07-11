@@ -1,4 +1,15 @@
-using TestesDaDonaMariana.WinApp.Compartilhado;
+using TestesDaDonaMariana.Dominio.ModuloDisciplina;
+using TestesDaDonaMariana.WinApp.ModuloDisciplina;
+using TestesDaDonaMariana.Infra.Dados.Sql.ModuloDisciplina;
+using TestesDaDonaMariana.Dominio.ModuloMateria;
+using TestesDaDonaMariana.WinApp.ModuloMateria;
+using TestesDaDonaMariana.Infra.Dados.Sql.ModuloMateria;
+using TestesDaDonaMariana.Dominio.ModuloQuestao;
+using TestesDaDonaMariana.Infra.Dados.Sql.ModuloQuestao;
+using TestesDaDonaMariana.WinApp.ModuloQuestao;
+using TestesDaDonaMariana.Dominio.ModuloTeste;
+using TestesDaDonaMariana.Infra.Dados.Sql.ModuloTeste;
+using TestesDaDonaMariana.WinApp.ModuloTeste;
 
 namespace TestesDaDonaMariana.WinApp
 {
@@ -8,10 +19,10 @@ namespace TestesDaDonaMariana.WinApp
 
 		private Controlador Controlador { get; set; }
 
-		//private IRepositorioDisciplina RepositorioDisciplina { get; set; }
-		//private IRepositorioMateria RepositorioMateria { get; set; }
-		//private IRepositorioQuestao RepositorioQuestao { get; set; }
-		//private IRepositorioTeste RepositorioTeste { get; set; }
+		private IRepositorioDisciplina RepositorioDisciplina = new RepositorioDisciplinaEmSql();
+		private IRepositorioMateria RepositorioMateria { get; set; } = new RepositorioMateriaEmSql();
+		private IRepositorioQuestao RepositorioQuestao { get; set; } = new RepositorioQuestaoEmSql();
+		private IRepositorioTeste RepositorioTeste { get; set; } = new RepositorioTesteEmSql();
 
 
 
@@ -26,37 +37,30 @@ namespace TestesDaDonaMariana.WinApp
 			labelRodape.Text = text;
 		}
 
-		private void itensTemaMenuItem_Click(object sender, EventArgs e)
+		private void disciplinaMenuItem_Click(object sender, EventArgs e)
 		{
-			//Controlador = new ControladorItemTema(RepositorioItemTema);
-
-			ConfigurarTelaPrincipal(Controlador);
-		}
-
-		private void clientesMenuItem_Click(object sender, EventArgs e)
-		{
-			//Controlador = new ControladorConcertar(RepositorioConcertar);
+			Controlador = new ControladorDisciplina(RepositorioDisciplina, RepositorioMateria);
 
 			ConfigurarTelaPrincipal(Controlador);
 		}
 
 		private void materiaToolStripMenuItem_Click(object sender, EventArgs e)
 		{
-			//Controlador = new ControladorConcertar(RepositorioConcertar);
+			Controlador = new ControladorMateria(RepositorioDisciplina, RepositorioMateria);
 
 			ConfigurarTelaPrincipal(Controlador);
 		}
 
-		private void questãoToolStripMenuItem_Click(object sender, EventArgs e)
+		private void questaoToolStripMenuItem_Click(object sender, EventArgs e)
 		{
-			//Controlador = new ControladorConcertar(RepositorioConcertar);
+			Controlador = new ControladorQuestao(RepositorioMateria, RepositorioQuestao);
 
 			ConfigurarTelaPrincipal(Controlador);
 		}
 
 		private void testeToolStripMenuItem_Click(object sender, EventArgs e)
 		{
-			//Controlador = new ControladorConcertar(RepositorioConcertar);
+			Controlador = new ControladorTeste(RepositorioDisciplina, RepositorioMateria, RepositorioQuestao, RepositorioTeste);
 
 			ConfigurarTelaPrincipal(Controlador);
 		}
@@ -75,10 +79,12 @@ namespace TestesDaDonaMariana.WinApp
 			btnInserir.ToolTipText = controlador.ToolTipInserir;
 			btnEditar.ToolTipText = controlador.ToolTipEditar;
 			btnExcluir.ToolTipText = controlador.ToolTipExcluir;
+			btnCopiarTeste.ToolTipText = controlador.ToolTipCopiarTeste;
 
 			btnInserir.Enabled = controlador.ToolTipEnableInserir;
 			btnEditar.Enabled = controlador.ToolTipEnableEditar;
 			btnExcluir.Enabled = controlador.ToolTipEnableExcluir;
+			btnCopiarTeste.Enabled = controlador.ToolTipEnableCopiarTeste;
 		}
 
 		private void ConfigurarListagem(Controlador controladorBase)
@@ -106,6 +112,11 @@ namespace TestesDaDonaMariana.WinApp
 		private void btnExcluir_Click(object sender, EventArgs e)
 		{
 			Controlador.Excluir();
+		}
+
+		private void btnCopiarTeste_Click(object sender, EventArgs e)
+		{
+			Controlador.CopiarTeste();
 		}
 	}
 }

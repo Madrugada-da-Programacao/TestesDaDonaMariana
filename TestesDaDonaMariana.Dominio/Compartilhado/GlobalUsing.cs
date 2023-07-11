@@ -1,1 +1,1 @@
-﻿
+﻿global using TestesDaDonaMariana.Dominio.Compartilhado;
