@@ -7,7 +7,7 @@ namespace TestesDaDonaMariana.WinApp.ModuloTeste
 {
 	public partial class DialogTeste : Form
 	{
-		public Teste Teste { get; set; }
+		public Teste teste { get; set; }
 		public List<Questao> QuestoesSorteadas { get; set; } = new List<Questao>();
 		private List<Materia> Materias { get; set; }
 		private List<Questao> Questoes { get; set; }
@@ -30,6 +30,28 @@ namespace TestesDaDonaMariana.WinApp.ModuloTeste
 			cmbMateria.ValueMember = "Id";
 		}
 
+		public Teste Teste
+		{
+			set
+			{
+				teste = value;
+				txtTitulo.Text = teste.Titulo;
+				cmbDisciplina.SelectedItem = teste.Disciplina;
+				if (teste.ProvaDeRecuperacao)
+				{
+					cbProvaDeRecuperacao.Checked = true;
+				}
+				else
+				{
+					cmbMateria.SelectedItem = teste.Materia;
+				}
+				nUDQtdDeQuestoes.Text = Convert.ToString(teste.QuantidadeDeQuestoes);
+			}
+			get
+			{
+				return teste;
+			}
+		}
 		private void btnGravar_Click(object sender, EventArgs e)
 		{
 			int id = int.Parse(labelId.Text);
@@ -43,9 +65,9 @@ namespace TestesDaDonaMariana.WinApp.ModuloTeste
 			int quantidadeDeQuestoes = int.Parse(nUDQtdDeQuestoes.Text);
 			bool provaRecuperacao = cbProvaDeRecuperacao.Checked;
 
-			Teste = new Teste(id, titulo, quantidadeDeQuestoes, provaRecuperacao, disciplina, materia);
+			teste = new Teste(id, titulo, quantidadeDeQuestoes, provaRecuperacao, disciplina, materia);
 
-			ValidarErros(Teste);
+			ValidarErros(teste);
 		}
 
 		private void btnSortear_Click(object sender, EventArgs e)

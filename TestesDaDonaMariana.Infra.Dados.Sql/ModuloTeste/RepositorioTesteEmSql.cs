@@ -233,9 +233,9 @@ namespace TestesDaDonaMariana.Infra.Dados.Sql.ModuloTeste
 			comandoSelecionarItens.CommandText = sqlCarregarQuestoes;
 
 			comandoSelecionarItens.Parameters.AddWithValue("TESTE_ID", teste.Id);
-			comandoSelecionarItens.Parameters.AddWithValue("MATERIA_ID", teste.Materia.Id);
+			//comandoSelecionarItens.Parameters.AddWithValue("MATERIA_ID", teste.Materia.Id);
 			comandoSelecionarItens.Parameters.AddWithValue("DISCIPLINA_ID", teste.Disciplina.Id);
-
+			
 			SqlDataReader leitorQuestao = comandoSelecionarItens.ExecuteReader();
 
 			while (leitorQuestao.Read())

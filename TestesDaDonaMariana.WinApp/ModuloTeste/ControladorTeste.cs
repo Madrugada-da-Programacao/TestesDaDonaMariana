@@ -2,6 +2,7 @@
 using TestesDaDonaMariana.Dominio.ModuloMateria;
 using TestesDaDonaMariana.Dominio.ModuloQuestao;
 using TestesDaDonaMariana.Dominio.ModuloTeste;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.Window;
 
 namespace TestesDaDonaMariana.WinApp.ModuloTeste
 {
@@ -12,6 +13,10 @@ namespace TestesDaDonaMariana.WinApp.ModuloTeste
 		private IRepositorioQuestao RepositorioQuestao { get; set; }
 		private IRepositorioTeste RepositorioTeste { get; set; }
 		private TabelaTeste TabelaTeste { get; set; }
+
+		public override string ToolTipCopiarTeste => "Copiar Teste";
+		public override bool ToolTipEnableEditar => false;
+		public override bool ToolTipEnableCopiarTeste => true;
 
 		public override string TipoDoCadastro => "Teste";
 
@@ -75,13 +80,43 @@ namespace TestesDaDonaMariana.WinApp.ModuloTeste
 														  $"Exclusão de {TipoDoCadastro}s",
 														  MessageBoxButtons.OKCancel,
 														  MessageBoxIcon.Question);
-
+			
 			if (opcaoEscolhida == DialogResult.OK)
 			{
 				RepositorioTeste.Excluir(entidade);
 
 				CarregarEntidades();
 			}
+		}
+
+		public override void CopiarTeste()
+		{
+			Teste testeSelecionado = ObterTesteSelecionado();
+
+			if (testeSelecionado == null)
+			{
+				MessageBox.Show($"Selecione um {TipoDoCadastro} primeiro!",
+								$"Duplicagem de {TipoDoCadastro}s",
+								MessageBoxButtons.OK,
+								MessageBoxIcon.Exclamation);
+
+				return;
+			}
+
+			DialogTeste dialog = new DialogTeste(RepositorioDisciplina.SelecionarTodos(), RepositorioMateria.SelecionarTodos(),
+												RepositorioQuestao.SelecionarTodos(), RepositorioTeste.SelecionarTodos());
+
+			dialog.Teste = testeSelecionado;
+
+			DialogResult opcaoEscolhida = dialog.ShowDialog();
+
+			if (opcaoEscolhida == DialogResult.OK)
+			{
+				Teste teste = dialog.Teste;
+				RepositorioTeste.Inserir(teste);
+			}
+
+			CarregarEntidades();
 		}
 
 
