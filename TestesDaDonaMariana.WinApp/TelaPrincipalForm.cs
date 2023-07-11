@@ -39,7 +39,7 @@ namespace TestesDaDonaMariana.WinApp
 
 		private void disciplinaMenuItem_Click(object sender, EventArgs e)
 		{
-			Controlador = new ControladorDisciplina(RepositorioDisciplina, RepositorioMateria);
+			Controlador = new ControladorDisciplina(RepositorioDisciplina, RepositorioMateria, RepositorioTeste);
 
 			ConfigurarTelaPrincipal(Controlador);
 		}
@@ -53,7 +53,7 @@ namespace TestesDaDonaMariana.WinApp
 
 		private void questaoToolStripMenuItem_Click(object sender, EventArgs e)
 		{
-			Controlador = new ControladorQuestao(RepositorioMateria, RepositorioQuestao);
+			Controlador = new ControladorQuestao(RepositorioMateria, RepositorioQuestao, RepositorioTeste);
 
 			ConfigurarTelaPrincipal(Controlador);
 		}
@@ -80,11 +80,15 @@ namespace TestesDaDonaMariana.WinApp
 			btnEditar.ToolTipText = controlador.ToolTipEditar;
 			btnExcluir.ToolTipText = controlador.ToolTipExcluir;
 			btnCopiarTeste.ToolTipText = controlador.ToolTipCopiarTeste;
+			btnVisualizarTeste.ToolTipText = controlador.ToolTipVisualizarTeste;
+			btnSalvarPDF.ToolTipText = controlador.ToolTipSalvarPDF;
 
 			btnInserir.Enabled = controlador.ToolTipEnableInserir;
 			btnEditar.Enabled = controlador.ToolTipEnableEditar;
 			btnExcluir.Enabled = controlador.ToolTipEnableExcluir;
 			btnCopiarTeste.Enabled = controlador.ToolTipEnableCopiarTeste;
+			btnVisualizarTeste.Enabled = controlador.ToolTipEnableVisualizarTeste;
+			btnSalvarPDF.Enabled = controlador.ToolTipEnableSalvarPDF;
 		}
 
 		private void ConfigurarListagem(Controlador controladorBase)
@@ -117,6 +121,16 @@ namespace TestesDaDonaMariana.WinApp
 		private void btnCopiarTeste_Click(object sender, EventArgs e)
 		{
 			Controlador.CopiarTeste();
+		}
+
+		private void btnVisualizarTeste_Click(object sender, EventArgs e)
+		{
+			Controlador.VisualizarTeste();
+		}
+
+		private void btnSalvarPDF_Click(object sender, EventArgs e)
+		{
+			Controlador.SalvarPDF();
 		}
 	}
 }

@@ -1,5 +1,6 @@
 ﻿using TestesDaDonaMariana.Dominio.ModuloDisciplina;
 using TestesDaDonaMariana.Dominio.ModuloMateria;
+using TestesDaDonaMariana.Dominio.ModuloTeste;
 
 namespace TestesDaDonaMariana.WinApp.ModuloDisciplina
 {
@@ -7,15 +8,18 @@ namespace TestesDaDonaMariana.WinApp.ModuloDisciplina
     {
         private IRepositorioDisciplina RepositorioDisciplina { get; set; }
 		private IRepositorioMateria RepositorioMateria { get; set; }
+		private IRepositorioTeste RepositorioTeste{ get; set; }
 
 		public override string TipoDoCadastro => "Disciplina";
 
         private TabelaDisciplina TabelaDisciplina { get; set; }
 
-        public ControladorDisciplina(IRepositorioDisciplina repositorioDisciplina, IRepositorioMateria repositorioMateria)
+        public ControladorDisciplina(IRepositorioDisciplina repositorioDisciplina, IRepositorioMateria repositorioMateria,
+                                    IRepositorioTeste repositorioTeste)
         {
             RepositorioDisciplina = repositorioDisciplina;
             RepositorioMateria = repositorioMateria;
+            RepositorioTeste = repositorioTeste;
         }
 
         public override void Inserir()
@@ -80,10 +84,10 @@ namespace TestesDaDonaMariana.WinApp.ModuloDisciplina
             }
 
 
-            bool existeDependencia =
+            bool existeDependenciaMateria =
 			RepositorioMateria.VerificarMateriaComDisciplina(entidade);
 
-            if (existeDependencia)
+            if (existeDependenciaMateria)
             {
                 MessageBox.Show($"Não é possível excluir uma {TipoDoCadastro} com matérias em aberto.",
                     $"Exclusão de {TipoDoCadastro}s",
@@ -93,22 +97,21 @@ namespace TestesDaDonaMariana.WinApp.ModuloDisciplina
                 return;
             }
 
-            /*
-            bool podeExcluir =
-            repositorioMateria.VerificarTestesAbertosDisciplina(entidade); 
+			bool existeDependenciaTeste =
+			RepositorioTeste.VerificarTesteComDisciplina(entidade);
 
-            if (!podeExcluir) 
-            {
-                MessageBox.Show($"Não é possível excluir uma {TipoDoCadastro} com matérias em aberto.",
-                    $"Exclusão de {TipoDoCadastro}s",
-                    MessageBoxButtons.OK,
-                    MessageBoxIcon.Exclamation);
+			if (existeDependenciaTeste)
+			{
+				MessageBox.Show($"Não é possível excluir uma {TipoDoCadastro} com matérias em aberto.",
+					$"Exclusão de {TipoDoCadastro}s",
+					MessageBoxButtons.OK,
+					MessageBoxIcon.Exclamation);
 
-                return;
-            }
-            TODO*/
+				return;
+			}
 
-            DialogResult opcao = MessageBox.Show($"Deseja excluir a {TipoDoCadastro} {entidade.Nome}?",
+
+			DialogResult opcao = MessageBox.Show($"Deseja excluir a {TipoDoCadastro} {entidade.Nome}?",
                                                           $"Exclusão de {TipoDoCadastro}s",
                                                           MessageBoxButtons.OKCancel,
                                                           MessageBoxIcon.Question);
