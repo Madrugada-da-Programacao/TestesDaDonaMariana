@@ -8,6 +8,10 @@
 		<ImplicitUsings>enable</ImplicitUsings>
 	</PropertyGroup>
 
+	<ItemGroup>
+	  <PackageReference Include="PdfSharp" Version="1.50.5147" />
+	</ItemGroup>
+
   <ItemGroup>
     <ProjectReference Include="..\TestesDaDonaMariana.Dominio\TestesDaDonaMariana.Dominio.csproj" />
     <ProjectReference Include="..\TestesDaDonaMariana.Infra.Dados.Sql\TestesDaDonaMariana.Infra.Dados.Sql.csproj" />

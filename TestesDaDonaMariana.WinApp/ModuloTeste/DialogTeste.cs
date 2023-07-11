@@ -121,9 +121,6 @@ namespace TestesDaDonaMariana.WinApp.ModuloTeste
 				Disciplina disciplinaSelecionada = (Disciplina)cmbDisciplina.SelectedItem;
 				List<Materia> materiasDaDisciplina = Materias.FindAll(materias => materias.Disciplina.Id == disciplinaSelecionada.Id);
 				cmbMateria.DataSource = materiasDaDisciplina;
-
-				//TODO setar maximo de questoes dependendo da disciplina/materia
-				//nUDQtdDeQuestoes.Maximum =
 			}
 		}
 
@@ -168,9 +165,6 @@ namespace TestesDaDonaMariana.WinApp.ModuloTeste
 					Disciplina disciplinaSelecionada = (Disciplina)cmbDisciplina.SelectedItem;
 					List<Materia> materiasDaDisciplina = Materias.FindAll(materias => materias.Disciplina.Id == disciplinaSelecionada.Id);
 					cmbMateria.DataSource = materiasDaDisciplina;
-
-					//TODO setar maximo de questoes dependendo da disciplina/materia
-					//nUDQtdDeQuestoes.Maximum =
 				}
 			}
 		}

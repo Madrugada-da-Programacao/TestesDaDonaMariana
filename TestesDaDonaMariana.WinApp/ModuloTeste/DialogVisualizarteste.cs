@@ -1,13 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using TestesDaDonaMariana.Dominio.ModuloTeste;
+﻿using TestesDaDonaMariana.Dominio.ModuloTeste;
 
 namespace TestesDaDonaMariana.WinApp.ModuloTeste
 {
@@ -17,6 +8,8 @@ namespace TestesDaDonaMariana.WinApp.ModuloTeste
 		public DialogVisualizarteste()
 		{
 			InitializeComponent();
+
+			this.ConfigurarDialog();
 		}
 
 		public Teste Teste

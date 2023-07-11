@@ -1,5 +1,6 @@
 ﻿using TestesDaDonaMariana.Dominio.ModuloMateria;
 using TestesDaDonaMariana.Dominio.ModuloQuestao;
+using TestesDaDonaMariana.Dominio.ModuloTeste;
 
 namespace TestesDaDonaMariana.WinApp.ModuloQuestao
 {
@@ -7,14 +8,16 @@ namespace TestesDaDonaMariana.WinApp.ModuloQuestao
 	{
 		private IRepositorioMateria RepositorioMateria{ get; set; }
 		private IRepositorioQuestao RepositorioQuestao { get; set; }
+		private IRepositorioTeste RepositorioTeste{ get; set; }
 		private TabelaQuestao TabelaQuestao { get; set; }
 
 		public override string TipoDoCadastro => "Questão";
 
-		public ControladorQuestao(IRepositorioMateria repositorioMateria, IRepositorioQuestao repositorioQuestao)
+		public ControladorQuestao(IRepositorioMateria repositorioMateria, IRepositorioQuestao repositorioQuestao, IRepositorioTeste repositorioTeste)
 		{
 			RepositorioMateria = repositorioMateria;
 			RepositorioQuestao = repositorioQuestao;
+			RepositorioTeste = repositorioTeste;
 		}
 
 		public override void Inserir()
@@ -76,16 +79,18 @@ namespace TestesDaDonaMariana.WinApp.ModuloQuestao
 				return;
 			}
 
-			//TODO adicionar testes
-			// if questao utilizada em algum texte não permita excluir a questão
-			//if (entidade.Testes.Count > 0)
-			//{
-			//	MessageBox.Show($"{TipoDoCadastro} esta sendo utilizada em outro lugar!",
-			//					$"Exclusão de {TipoDoCadastro}s",
-			//					MessageBoxButtons.OK,
-			//					MessageBoxIcon.Exclamation);
-			//	return;
-			//}
+			bool existeDependenciaTeste =
+			RepositorioTeste.VerificarQuestaoComDisciplina(entidade);
+
+			if (existeDependenciaTeste)
+			{
+				MessageBox.Show($"Não é possível excluir uma {TipoDoCadastro} com matérias em aberto.",
+					$"Exclusão de {TipoDoCadastro}s",
+					MessageBoxButtons.OK,
+					MessageBoxIcon.Exclamation);
+
+				return;
+			}
 
 
 			DialogResult opcaoEscolhida = MessageBox.Show($"Deseja excluir o {TipoDoCadastro} {entidade.Enunciado}?",

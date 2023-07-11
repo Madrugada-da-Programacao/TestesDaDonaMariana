@@ -2,7 +2,6 @@
 using TestesDaDonaMariana.Dominio.ModuloMateria;
 using TestesDaDonaMariana.Dominio.ModuloQuestao;
 using TestesDaDonaMariana.Dominio.ModuloTeste;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement.Window;
 
 namespace TestesDaDonaMariana.WinApp.ModuloTeste
 {
@@ -16,9 +15,11 @@ namespace TestesDaDonaMariana.WinApp.ModuloTeste
 
 		public override string ToolTipCopiarTeste => "Copiar Teste";
 		public override string ToolTipVisualizarTeste => "Visualizar Teste";
+		public override string ToolTipSalvarPDF => "Salvar PDF";
 		public override bool ToolTipEnableEditar => false;
 		public override bool ToolTipEnableCopiarTeste => true;
 		public override bool ToolTipEnableVisualizarTeste => true;
+		public override bool ToolTipEnableSalvarPDF => true;
 
 		public override string TipoDoCadastro => "Teste";
 
@@ -66,18 +67,6 @@ namespace TestesDaDonaMariana.WinApp.ModuloTeste
 				return;
 			}
 
-			//TODO adicionar testes
-			// if questao utilizada em algum texte não permita excluir a questão
-			//if (entidade.Testes.Count > 0)
-			//{
-			//	MessageBox.Show($"{TipoDoCadastro} esta sendo utilizada em outro lugar!",
-			//					$"Exclusão de {TipoDoCadastro}s",
-			//					MessageBoxButtons.OK,
-			//					MessageBoxIcon.Exclamation);
-			//	return;
-			//}
-
-
 			DialogResult opcaoEscolhida = MessageBox.Show($"Deseja excluir o {TipoDoCadastro} {entidade.Titulo}?",
 														  $"Exclusão de {TipoDoCadastro}s",
 														  MessageBoxButtons.OKCancel,
@@ -93,7 +82,7 @@ namespace TestesDaDonaMariana.WinApp.ModuloTeste
 
 		public override void CopiarTeste()
 		{
-			Teste entidade = ObterTesteSelecionado();
+			Teste entidade = ObterTesteSelecionado()!;
 
 			if (entidade == null)
 			{
@@ -124,7 +113,7 @@ namespace TestesDaDonaMariana.WinApp.ModuloTeste
 
 		public override void VisualizarTeste()
 		{
-			Teste entidade = ObterTesteSelecionado();
+			Teste entidade = ObterTesteSelecionado()!;
 
 			DialogVisualizarteste dialog = new DialogVisualizarteste();
 
@@ -141,6 +130,24 @@ namespace TestesDaDonaMariana.WinApp.ModuloTeste
 			dialog.ShowDialog();
 		}
 
+		public override void SalvarPDF()
+		{
+			Teste entidade = ObterTesteSelecionado()!;
+
+			DialogGerarPDF dialog = new DialogGerarPDF();
+
+			if (entidade == null)
+			{
+				MessageBox.Show($"Selecione um {TipoDoCadastro} primeiro!",
+								$"Salvar {TipoDoCadastro} em PDF",
+								MessageBoxButtons.OK,
+								MessageBoxIcon.Exclamation);
+
+				return;
+			}
+			dialog.Teste = entidade;
+			dialog.ShowDialog();
+		}
 
 		private void CarregarEntidades()
 		{

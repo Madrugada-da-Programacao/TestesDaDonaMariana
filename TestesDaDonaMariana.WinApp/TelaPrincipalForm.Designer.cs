@@ -43,6 +43,7 @@
 			toolStripSeparator2 = new ToolStripSeparator();
 			btnCopiarTeste = new ToolStripButton();
 			btnVisualizarTeste = new ToolStripButton();
+			btnSalvarPDF = new ToolStripButton();
 			labelTipoCadastro = new ToolStripLabel();
 			panelRegistros = new Panel();
 			alugueisToolStripMenuItem = new ToolStripMenuItem();
@@ -115,7 +116,7 @@
 			// barraFerramentas
 			// 
 			barraFerramentas.ImageScalingSize = new Size(20, 20);
-			barraFerramentas.Items.AddRange(new ToolStripItem[] { btnInserir, btnEditar, btnExcluir, toolStripSeparator2, btnCopiarTeste, btnVisualizarTeste, labelTipoCadastro });
+			barraFerramentas.Items.AddRange(new ToolStripItem[] { btnInserir, btnEditar, btnExcluir, toolStripSeparator2, btnCopiarTeste, btnVisualizarTeste, btnSalvarPDF, labelTipoCadastro });
 			barraFerramentas.Location = new Point(0, 24);
 			barraFerramentas.Name = "barraFerramentas";
 			barraFerramentas.Size = new Size(800, 45);
@@ -187,6 +188,18 @@
 			btnVisualizarTeste.Size = new Size(42, 42);
 			btnVisualizarTeste.Click += btnVisualizarTeste_Click;
 			// 
+			// btnSalvarPDF
+			// 
+			btnSalvarPDF.DisplayStyle = ToolStripItemDisplayStyle.Image;
+			btnSalvarPDF.Enabled = false;
+			btnSalvarPDF.Image = Properties.Resources.save_FILL0_wght400_GRAD0_opsz24;
+			btnSalvarPDF.ImageScaling = ToolStripItemImageScaling.None;
+			btnSalvarPDF.ImageTransparentColor = Color.Magenta;
+			btnSalvarPDF.Name = "btnSalvarPDF";
+			btnSalvarPDF.Padding = new Padding(7);
+			btnSalvarPDF.Size = new Size(42, 42);
+			btnSalvarPDF.Click += btnSalvarPDF_Click;
+			// 
 			// labelTipoCadastro
 			// 
 			labelTipoCadastro.Name = "labelTipoCadastro";
@@ -257,5 +270,6 @@
 		private ToolStripMenuItem testeToolStripMenuItem;
 		private ToolStripButton btnCopiarTeste;
 		private ToolStripButton btnVisualizarTeste;
+		private ToolStripButton btnSalvarPDF;
 	}
 }
