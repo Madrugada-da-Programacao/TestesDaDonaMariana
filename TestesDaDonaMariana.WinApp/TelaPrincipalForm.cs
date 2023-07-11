@@ -80,11 +80,13 @@ namespace TestesDaDonaMariana.WinApp
 			btnEditar.ToolTipText = controlador.ToolTipEditar;
 			btnExcluir.ToolTipText = controlador.ToolTipExcluir;
 			btnCopiarTeste.ToolTipText = controlador.ToolTipCopiarTeste;
+			btnVisualizarTeste.ToolTipText = controlador.ToolTipVisualizarTeste;
 
 			btnInserir.Enabled = controlador.ToolTipEnableInserir;
 			btnEditar.Enabled = controlador.ToolTipEnableEditar;
 			btnExcluir.Enabled = controlador.ToolTipEnableExcluir;
 			btnCopiarTeste.Enabled = controlador.ToolTipEnableCopiarTeste;
+			btnVisualizarTeste.Enabled = controlador.ToolTipEnableVisualizarTeste;
 		}
 
 		private void ConfigurarListagem(Controlador controladorBase)
@@ -117,6 +119,11 @@ namespace TestesDaDonaMariana.WinApp
 		private void btnCopiarTeste_Click(object sender, EventArgs e)
 		{
 			Controlador.CopiarTeste();
+		}
+
+		private void btnVisualizarTeste_Click(object sender, EventArgs e)
+		{
+			Controlador.VisualizarTeste();
 		}
 	}
 }

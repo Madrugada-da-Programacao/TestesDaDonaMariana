@@ -15,8 +15,10 @@ namespace TestesDaDonaMariana.WinApp.ModuloTeste
 		private TabelaTeste TabelaTeste { get; set; }
 
 		public override string ToolTipCopiarTeste => "Copiar Teste";
+		public override string ToolTipVisualizarTeste => "Visualizar Teste";
 		public override bool ToolTipEnableEditar => false;
 		public override bool ToolTipEnableCopiarTeste => true;
+		public override bool ToolTipEnableVisualizarTeste => true;
 
 		public override string TipoDoCadastro => "Teste";
 
@@ -91,9 +93,9 @@ namespace TestesDaDonaMariana.WinApp.ModuloTeste
 
 		public override void CopiarTeste()
 		{
-			Teste testeSelecionado = ObterTesteSelecionado();
+			Teste entidade = ObterTesteSelecionado();
 
-			if (testeSelecionado == null)
+			if (entidade == null)
 			{
 				MessageBox.Show($"Selecione um {TipoDoCadastro} primeiro!",
 								$"Duplicagem de {TipoDoCadastro}s",
@@ -106,17 +108,37 @@ namespace TestesDaDonaMariana.WinApp.ModuloTeste
 			DialogTeste dialog = new DialogTeste(RepositorioDisciplina.SelecionarTodos(), RepositorioMateria.SelecionarTodos(),
 												RepositorioQuestao.SelecionarTodos(), RepositorioTeste.SelecionarTodos());
 
-			dialog.Teste = testeSelecionado;
+			dialog.Teste = entidade;
 
 			DialogResult opcaoEscolhida = dialog.ShowDialog();
 
 			if (opcaoEscolhida == DialogResult.OK)
 			{
-				Teste teste = dialog.Teste;
-				RepositorioTeste.Inserir(teste);
+				entidade = dialog.Teste;
+				entidade.Questoes = dialog.QuestoesSorteadas;
+				RepositorioTeste.Inserir(entidade, dialog.QuestoesSorteadas);
 			}
 
 			CarregarEntidades();
+		}
+
+		public override void VisualizarTeste()
+		{
+			Teste entidade = ObterTesteSelecionado();
+
+			DialogVisualizarteste dialog = new DialogVisualizarteste();
+
+			if (entidade == null)
+			{
+				MessageBox.Show($"Selecione um {TipoDoCadastro} primeiro!",
+								$"Listagem de {TipoDoCadastro}s",
+								MessageBoxButtons.OK,
+								MessageBoxIcon.Exclamation);
+
+				return;
+			}
+			dialog.Teste = entidade;
+			dialog.ShowDialog();
 		}
 
 

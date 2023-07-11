@@ -41,10 +41,11 @@
 			btnEditar = new ToolStripButton();
 			btnExcluir = new ToolStripButton();
 			toolStripSeparator2 = new ToolStripSeparator();
+			btnCopiarTeste = new ToolStripButton();
+			btnVisualizarTeste = new ToolStripButton();
 			labelTipoCadastro = new ToolStripLabel();
 			panelRegistros = new Panel();
 			alugueisToolStripMenuItem = new ToolStripMenuItem();
-			btnCopiarTeste = new ToolStripButton();
 			menuStrip1.SuspendLayout();
 			statusStrip1.SuspendLayout();
 			barraFerramentas.SuspendLayout();
@@ -114,7 +115,7 @@
 			// barraFerramentas
 			// 
 			barraFerramentas.ImageScalingSize = new Size(20, 20);
-			barraFerramentas.Items.AddRange(new ToolStripItem[] { btnInserir, btnEditar, btnExcluir, toolStripSeparator2, btnCopiarTeste, labelTipoCadastro });
+			barraFerramentas.Items.AddRange(new ToolStripItem[] { btnInserir, btnEditar, btnExcluir, toolStripSeparator2, btnCopiarTeste, btnVisualizarTeste, labelTipoCadastro });
 			barraFerramentas.Location = new Point(0, 24);
 			barraFerramentas.Name = "barraFerramentas";
 			barraFerramentas.Size = new Size(800, 45);
@@ -162,6 +163,30 @@
 			toolStripSeparator2.Name = "toolStripSeparator2";
 			toolStripSeparator2.Size = new Size(6, 45);
 			// 
+			// btnCopiarTeste
+			// 
+			btnCopiarTeste.DisplayStyle = ToolStripItemDisplayStyle.Image;
+			btnCopiarTeste.Enabled = false;
+			btnCopiarTeste.Image = Properties.Resources.content_copy_FILL0_wght400_GRAD0_opsz24;
+			btnCopiarTeste.ImageScaling = ToolStripItemImageScaling.None;
+			btnCopiarTeste.ImageTransparentColor = Color.Magenta;
+			btnCopiarTeste.Name = "btnCopiarTeste";
+			btnCopiarTeste.Padding = new Padding(7);
+			btnCopiarTeste.Size = new Size(42, 42);
+			btnCopiarTeste.Click += btnCopiarTeste_Click;
+			// 
+			// btnVisualizarTeste
+			// 
+			btnVisualizarTeste.DisplayStyle = ToolStripItemDisplayStyle.Image;
+			btnVisualizarTeste.Enabled = false;
+			btnVisualizarTeste.Image = Properties.Resources.wysiwyg_FILL0_wght400_GRAD0_opsz24;
+			btnVisualizarTeste.ImageScaling = ToolStripItemImageScaling.None;
+			btnVisualizarTeste.ImageTransparentColor = Color.Magenta;
+			btnVisualizarTeste.Name = "btnVisualizarTeste";
+			btnVisualizarTeste.Padding = new Padding(7);
+			btnVisualizarTeste.Size = new Size(42, 42);
+			btnVisualizarTeste.Click += btnVisualizarTeste_Click;
+			// 
 			// labelTipoCadastro
 			// 
 			labelTipoCadastro.Name = "labelTipoCadastro";
@@ -182,18 +207,6 @@
 			alugueisToolStripMenuItem.Name = "alugueisToolStripMenuItem";
 			alugueisToolStripMenuItem.Size = new Size(180, 22);
 			alugueisToolStripMenuItem.Text = "Materia";
-			// 
-			// btnCopiarTeste
-			// 
-			btnCopiarTeste.DisplayStyle = ToolStripItemDisplayStyle.Image;
-			btnCopiarTeste.Enabled = false;
-			btnCopiarTeste.Image = Properties.Resources.content_copy_FILL0_wght400_GRAD0_opsz24;
-			btnCopiarTeste.ImageScaling = ToolStripItemImageScaling.None;
-			btnCopiarTeste.ImageTransparentColor = Color.Magenta;
-			btnCopiarTeste.Name = "btnCopiarTeste";
-			btnCopiarTeste.Padding = new Padding(7);
-			btnCopiarTeste.Size = new Size(42, 42);
-			btnCopiarTeste.Click += btnCopiarTeste_Click;
 			// 
 			// TelaPrincipalForm
 			// 
@@ -237,12 +250,12 @@
 		private ToolStripSeparator toolStripSeparator2;
 		private ToolStripSeparator toolStripSeparator3;
 		private ToolStripButton btnConfigurarDescontos;
-		private ToolStripButton btnVisualizarAlugueisCliente;
 		private ToolStripButton btnConcluirAluguel;
 		private ToolStripMenuItem alugueisToolStripMenuItem;
 		private ToolStripMenuItem materiaToolStripMenuItem;
 		private ToolStripMenuItem questãoToolStripMenuItem;
 		private ToolStripMenuItem testeToolStripMenuItem;
 		private ToolStripButton btnCopiarTeste;
+		private ToolStripButton btnVisualizarTeste;
 	}
 }
