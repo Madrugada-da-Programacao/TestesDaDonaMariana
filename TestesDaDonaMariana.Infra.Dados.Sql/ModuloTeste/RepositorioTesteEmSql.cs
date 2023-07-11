@@ -1,4 +1,5 @@
 ﻿using Microsoft.Data.SqlClient;
+using TestesDaDonaMariana.Dominio.ModuloDisciplina;
 using TestesDaDonaMariana.Dominio.ModuloQuestao;
 using TestesDaDonaMariana.Dominio.ModuloTeste;
 using TestesDaDonaMariana.Infra.Dados.Sql.ModuloQuestao;
@@ -233,7 +234,6 @@ namespace TestesDaDonaMariana.Infra.Dados.Sql.ModuloTeste
 			comandoSelecionarItens.CommandText = sqlCarregarQuestoes;
 
 			comandoSelecionarItens.Parameters.AddWithValue("TESTE_ID", teste.Id);
-			//comandoSelecionarItens.Parameters.AddWithValue("MATERIA_ID", teste.Materia.Id);
 			comandoSelecionarItens.Parameters.AddWithValue("DISCIPLINA_ID", teste.Disciplina.Id);
 			
 			SqlDataReader leitorQuestao = comandoSelecionarItens.ExecuteReader();
@@ -258,6 +258,18 @@ namespace TestesDaDonaMariana.Infra.Dados.Sql.ModuloTeste
 				CarregarQuestoes(teste);
 
 			return teste;
+		}
+
+		public bool VerificarTesteComDisciplina(Disciplina entidade)
+		{
+			return SelecionarTodos()
+				.Any(teste => teste.Disciplina.Nome == entidade.Nome);
+		}
+
+		public bool VerificarQuestaoComDisciplina(Questao entidade)
+		{
+			return SelecionarTodos()
+				.Any(teste => teste.Questoes.Any(questao => questao.Id == entidade.Id));
 		}
 	}
 }

@@ -82,7 +82,7 @@ namespace TestesDaDonaMariana.WinApp.ModuloTeste
 
 			if (quantidade <= 0)
 			{
-				MessageBox.Show("Digite uma quantidade válida!", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+				TelaPrincipalForm.Instancia.AtualizarToolStrip("Digite uma quantidade válida");
 				return;
 			}
 
@@ -99,7 +99,7 @@ namespace TestesDaDonaMariana.WinApp.ModuloTeste
 
 			if (questoesParaSortear.Count < quantidade)
 			{
-				MessageBox.Show("Não há questões suficientes para a quantidade solicitada!", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+				TelaPrincipalForm.Instancia.AtualizarToolStrip("Não há questões suficientes para a quantidade solicitada!");
 				return;
 			}
 
@@ -121,9 +121,6 @@ namespace TestesDaDonaMariana.WinApp.ModuloTeste
 				Disciplina disciplinaSelecionada = (Disciplina)cmbDisciplina.SelectedItem;
 				List<Materia> materiasDaDisciplina = Materias.FindAll(materias => materias.Disciplina.Id == disciplinaSelecionada.Id);
 				cmbMateria.DataSource = materiasDaDisciplina;
-
-				//TODO setar maximo de questoes dependendo da disciplina/materia
-				//nUDQtdDeQuestoes.Maximum =
 			}
 		}
 
@@ -140,7 +137,7 @@ namespace TestesDaDonaMariana.WinApp.ModuloTeste
 				DialogResult = DialogResult.None;
 			}
 
-			if (Testes.Contains(teste))
+			if (Testes.Any(teste => teste.Titulo == Teste.Titulo))
 			{
 				TelaPrincipalForm.Instancia.AtualizarToolStrip("O título já esta em uso");
 
@@ -168,9 +165,6 @@ namespace TestesDaDonaMariana.WinApp.ModuloTeste
 					Disciplina disciplinaSelecionada = (Disciplina)cmbDisciplina.SelectedItem;
 					List<Materia> materiasDaDisciplina = Materias.FindAll(materias => materias.Disciplina.Id == disciplinaSelecionada.Id);
 					cmbMateria.DataSource = materiasDaDisciplina;
-
-					//TODO setar maximo de questoes dependendo da disciplina/materia
-					//nUDQtdDeQuestoes.Maximum =
 				}
 			}
 		}
